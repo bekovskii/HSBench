@@ -96,4 +96,12 @@ This repository is intended for HS code classification and reasoning research, e
 
 If you use the resources in this repository, please cite the paper:
 
-> HSGraphAgent: Knowledge-Graph-Guided Large Language Models for Harmonized System Code Classification
+```
+@inproceedings{xia2026hsgraphagent,
+  title={HSGraphAgent: Knowledge-Graph-Guided Large Language Models for Harmonized System Code Classification},
+  author={Xia, Qiang and Zhang, Zijian and Wang, Ao and Wang, Wenhan and Wang, Xiangyu and Li, Jian},
+  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={44761--44773},
+  year={2026}
+}
+```
