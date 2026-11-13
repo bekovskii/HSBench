@@ -98,7 +98,10 @@ def evaluate_fta_origin(request: FTAAssessmentRequest, today: date | None = None
         )
 
     statuses = [result.status for result in results]
-    if request.rule_effective_date > today:
+    if not request.rule_source_verified:
+        outcome = "insufficient_data"
+        summary = "The supplied criteria were evaluated, but their agreement source has not been verified by the caller."
+    elif request.rule_effective_date > today:
         outcome = "insufficient_data"
         summary = "The cited rule is not effective yet; current qualification cannot be concluded."
     elif request.criteria_logic == "all":
@@ -115,6 +118,7 @@ def evaluate_fta_origin(request: FTAAssessmentRequest, today: date | None = None
         product_hs6=request.product_hs6,
         status=outcome,
         rule_source=request.rule_source,
+        rule_source_verified=request.rule_source_verified,
         rule_effective_date=request.rule_effective_date,
         rule_summary=request.rule_summary,
         criteria_results=results,
@@ -133,6 +137,7 @@ if __name__ == "__main__":
         product_hs6="850760",
         rule_source="official agreement rule supplied by the caller",
         rule_effective_date=date(2025, 1, 1),
+        rule_source_verified=True,
         rule_summary="Four-digit tariff shift",
         criteria=[FTACriterion(kind=CriterionKind.TARIFF_SHIFT, required_change_digits=4)],
         components=[Component(hs_code="730799", origin_status=OriginatingStatus.NON_ORIGINATING, evidence_references=["BOM-1"])],
