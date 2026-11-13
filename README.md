@@ -49,4 +49,3 @@ FAISS indeksini ve Harvard sınıflandırıcısını kullanmak için `.venv\Scri
 - Harvard `hscode-mapping`: `core/search/hs_classifier/` ve `core/search/language.py`.
 - GenPark savings arithmetic: `core/tariff_engine/savings.py`; deterministic FTA and GRI 2(a) scenario evaluation: `core/tariff_engine/`.
 - `hs-code-lookup`: `core/duty_lookup/` ve `data/tariffs/`.
-

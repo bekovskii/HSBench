@@ -67,4 +67,3 @@ def classify_with_gri(payload: dict) -> ClassificationResponse:
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
     payload["canonical_json_schema"] = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     return _generate_json(prompt, payload, ClassificationResponse)
-

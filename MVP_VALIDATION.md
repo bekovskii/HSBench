@@ -31,4 +31,3 @@ $env:GEMINI_MODEL = "gemini-2.5-pro"
 Sonra API sürecini yeniden başlatıp sayfadaki **GRI ile sınıflandır** düğmesini kullanın. API anahtarı yoksa `/api/classify` 503 döndürür; sahte sınıflandırma üretmez. Görselde istenen `gemini-2.5-pro` modelinin hesabınızda kullanılabildiğini doğrulayın; Google yeni projeler için güncel modelleri öneriyor. FTA değerlendirmesinde `rule_source_verified=true` resmi kuralın çağıran tarafından kontrol edildiğini belirtir; bu işaret olmadan sonuç `insufficient_data` kalır.
 
 Başka bir API adresine yayınlarken Next.js derleme ortamında `FASTAPI_URL` değişkenini API'nin tam adresine ayarlayın. Bu prototip e-posta adreslerini yerel SQLite dosyasına kaydeder; herkese açık kullanım öncesi kalıcı veritabanı ve gizlilik metni yapılandırılmalıdır.
-

@@ -281,4 +281,3 @@ if __name__ == "__main__":
         f"checked {len(timings):,} HS6 lookups under 50 ms; max {max(timings):.3f} ms; "
         f"unresolved targets {ascii(sorted(graph.unresolved_targets))}."
     )
-
