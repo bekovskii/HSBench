@@ -105,3 +105,7 @@ If you use the resources in this repository, please cite the paper:
   year={2026}
 }
 ```
+
+## MVP validation page
+
+The local Next.js and FastAPI prototype is documented in [MVP_VALIDATION.md](MVP_VALIDATION.md). It includes an HS6 in-memory lookup and a mock product URL preview.
