@@ -1,0 +1,729 @@
+{
+  "$defs": {
+    "CandidateHeading": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "description": "Aday pozisyon veya alt pozisyon kodu.",
+          "pattern": "^(?:\\d{2}|\\d{4}|\\d{6}|\\d{8}|\\d{10}|\\d{12})$",
+          "title": "Code",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Pozisyonun sağlanan tarife kaynağındaki tanımı.",
+          "title": "Description"
+        },
+        "status": {
+          "$ref": "#/$defs/CandidateStatus",
+          "description": "Adayın seçilme veya elenme durumu."
+        },
+        "elimination_or_selection_reason": {
+          "description": "Adayın seçilme veya elenme nedeni.",
+          "minLength": 1,
+          "title": "Elimination Or Selection Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "status",
+        "elimination_or_selection_reason"
+      ],
+      "title": "CandidateHeading",
+      "type": "object"
+    },
+    "CandidateStatus": {
+      "enum": [
+        "SELECTED",
+        "REJECTED"
+      ],
+      "title": "CandidateStatus",
+      "type": "string"
+    },
+    "ClassificationStatus": {
+      "enum": [
+        "classified",
+        "needs_more_information",
+        "no_supported_candidate"
+      ],
+      "title": "ClassificationStatus",
+      "type": "string"
+    },
+    "ExcludedPathReason": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^(?:\\d{2}|\\d{4}|\\d{6}|\\d{8}|\\d{10}|\\d{12})$",
+          "title": "Code",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "referenced_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Referenced Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "reason"
+      ],
+      "title": "ExcludedPathReason",
+      "type": "object"
+    },
+    "FTAAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "agreement": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agreement"
+        },
+        "status": {
+          "$ref": "#/$defs/OriginStatus"
+        },
+        "rule_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Source"
+        },
+        "rule_effective_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Effective Date"
+        },
+        "rule_summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Summary"
+        },
+        "explanation": {
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "evidence_references": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence References",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "explanation"
+      ],
+      "title": "FTAAssessment",
+      "type": "object"
+    },
+    "FinalClassification": {
+      "additionalProperties": false,
+      "properties": {
+        "hs_chapter": {
+          "description": "İki haneli HS fasıl kodu; bilinmiyorsa boş.",
+          "pattern": "^(?:\\d{2})?$",
+          "title": "Hs Chapter",
+          "type": "string"
+        },
+        "hs_heading": {
+          "description": "Dört haneli HS pozisyon kodu; bilinmiyorsa boş.",
+          "pattern": "^(?:\\d{4})?$",
+          "title": "Hs Heading",
+          "type": "string"
+        },
+        "hs_subheading": {
+          "description": "Altı haneli HS alt pozisyonu; bilinmiyorsa boş.",
+          "pattern": "^(?:\\d{6})?$",
+          "title": "Hs Subheading",
+          "type": "string"
+        },
+        "national_tariff_code": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{6}|\\d{8}|\\d{10}|\\d{12})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Resmi kaynaktan doğrulanmış ulusal kod; bilinmiyorsa null.",
+          "title": "National Tariff Code"
+        },
+        "applied_gri_summary": {
+          "description": "Nihai kararda uygulanan kuralların sıralı listesi.",
+          "items": {
+            "$ref": "#/$defs/GriRule"
+          },
+          "title": "Applied Gri Summary",
+          "type": "array"
+        },
+        "legal_justification": {
+          "description": "Kararın kısa ve kaynaklara dayalı gerekçesi.",
+          "minLength": 1,
+          "title": "Legal Justification",
+          "type": "string"
+        },
+        "confidence_score": {
+          "description": "0.0–1.0 arası kanıt temelli güven puanı.",
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence Score",
+          "type": "number"
+        }
+      },
+      "required": [
+        "hs_chapter",
+        "hs_heading",
+        "hs_subheading",
+        "applied_gri_summary",
+        "legal_justification",
+        "confidence_score"
+      ],
+      "title": "FinalClassification",
+      "type": "object"
+    },
+    "GriDecisionStep": {
+      "additionalProperties": false,
+      "properties": {
+        "rule": {
+          "$ref": "#/$defs/GriRule",
+          "description": "Değerlendirilen Genel Yorum Kuralı."
+        },
+        "is_applied": {
+          "description": "Kural sınıflandırma kararında aktif olarak kullanıldı mı?",
+          "title": "Is Applied",
+          "type": "boolean"
+        },
+        "reasoning": {
+          "description": "Uygulama veya atlama gerekçesinin kısa, denetlenebilir özeti.",
+          "minLength": 1,
+          "title": "Reasoning",
+          "type": "string"
+        },
+        "referenced_notes": {
+          "description": "Dikkate alınan Bölüm, Fasıl veya Alt Pozisyon notları.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Referenced Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rule",
+        "is_applied",
+        "reasoning"
+      ],
+      "title": "GriDecisionStep",
+      "type": "object"
+    },
+    "GriRule": {
+      "enum": [
+        "GRI_1",
+        "GRI_2A",
+        "GRI_2B",
+        "GRI_3A",
+        "GRI_3B",
+        "GRI_3C",
+        "GRI_4",
+        "GRI_5A",
+        "GRI_5B",
+        "GRI_6"
+      ],
+      "title": "GriRule",
+      "type": "string"
+    },
+    "MarketRates": {
+      "additionalProperties": false,
+      "properties": {
+        "US": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Us"
+        },
+        "EU": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eu"
+        },
+        "UK": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uk"
+        },
+        "CN": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cn"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "verified_on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Verified On"
+        }
+      },
+      "required": [
+        "US",
+        "EU",
+        "UK",
+        "CN",
+        "source",
+        "verified_on"
+      ],
+      "title": "MarketRates",
+      "type": "object"
+    },
+    "MissingInformation": {
+      "additionalProperties": false,
+      "properties": {
+        "needs_more_info": {
+          "description": "Kesin sınıflandırma için kullanıcıdan ek bilgi gerekiyor mu?",
+          "title": "Needs More Info",
+          "type": "boolean"
+        },
+        "clarification_questions": {
+          "description": "Eksik kritik teknik olgular için sorular.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Clarification Questions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "needs_more_info",
+        "clarification_questions"
+      ],
+      "title": "MissingInformation",
+      "type": "object"
+    },
+    "OriginStatus": {
+      "enum": [
+        "qualified",
+        "not_qualified",
+        "insufficient_data",
+        "not_assessed"
+      ],
+      "title": "OriginStatus",
+      "type": "string"
+    },
+    "ProductAnalysis": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized_description": {
+          "description": "Eşyanın gümrük terminolojisine uygun standartlaştırılmış tanımı.",
+          "minLength": 1,
+          "title": "Normalized Description",
+          "type": "string"
+        },
+        "material_composition": {
+          "description": "Eşyayı oluşturan materyaller veya bileşenler.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Material Composition",
+          "type": "array"
+        },
+        "primary_function": {
+          "description": "Eşyanın ana fonksiyonu veya kullanım amacı.",
+          "minLength": 1,
+          "title": "Primary Function",
+          "type": "string"
+        },
+        "form_and_packaging": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Sunuluş şekli: demonte, perakende set, özel kutulu vb.",
+          "title": "Form And Packaging"
+        }
+      },
+      "required": [
+        "normalized_description",
+        "material_composition",
+        "primary_function"
+      ],
+      "title": "ProductAnalysis",
+      "type": "object"
+    },
+    "SearchMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "detected_language": {
+          "title": "Detected Language",
+          "type": "string"
+        },
+        "search_terms": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Search Terms",
+          "type": "array"
+        },
+        "candidate_count": {
+          "minimum": 0,
+          "title": "Candidate Count",
+          "type": "integer"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "detected_language",
+        "search_terms",
+        "candidate_count",
+        "source"
+      ],
+      "title": "SearchMetadata",
+      "type": "object"
+    },
+    "TariffEngineeringAdvice": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "pattern": "^(not_assessed|no_saving|review_required|potential_saving)$",
+          "title": "Status",
+          "type": "string"
+        },
+        "scenario": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scenario"
+        },
+        "assembled_hs6": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{6}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assembled Hs6"
+        },
+        "unassembled_hs6": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{6}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unassembled Hs6"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "assembled_mfn_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assembled Mfn Pct"
+        },
+        "unassembled_mfn_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unassembled Mfn Pct"
+        },
+        "annual_import_value": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Annual Import Value"
+        },
+        "potential_savings": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Potential Savings"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "data_verified_on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data Verified On"
+        },
+        "explanation": {
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "legal_review_required": {
+          "default": true,
+          "title": "Legal Review Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status",
+        "explanation"
+      ],
+      "title": "TariffEngineeringAdvice",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Merged response contract from ClassificationResponse.txt and the roadmap.",
+  "properties": {
+    "classification_status": {
+      "$ref": "#/$defs/ClassificationStatus",
+      "description": "Kararın sınıflandırıldı, ek bilgi gerekli veya aday bulunamadı durumu."
+    },
+    "hs_code_6": {
+      "description": "Doğrulanmış WCO HS6; belirlenemediyse boş.",
+      "pattern": "^(?:\\d{6})?$",
+      "title": "Hs Code 6",
+      "type": "string"
+    },
+    "hs_code_10": {
+      "anyOf": [
+        {
+          "pattern": "^\\d{10}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Resmi kaynakta doğrulanmış 10 haneli kod; mevcut değilse null.",
+      "title": "Hs Code 10"
+    },
+    "product_analysis": {
+      "$ref": "#/$defs/ProductAnalysis"
+    },
+    "gri_decision_tree": {
+      "description": "GYK 1–6 karar adımlarının sıralı kaydı.",
+      "items": {
+        "$ref": "#/$defs/GriDecisionStep"
+      },
+      "title": "Gri Decision Tree",
+      "type": "array"
+    },
+    "candidate_headings": {
+      "description": "Analizde değerlendirilen aday pozisyonlar.",
+      "items": {
+        "$ref": "#/$defs/CandidateHeading"
+      },
+      "title": "Candidate Headings",
+      "type": "array"
+    },
+    "final_classification": {
+      "$ref": "#/$defs/FinalClassification"
+    },
+    "missing_information": {
+      "$ref": "#/$defs/MissingInformation"
+    },
+    "excluded_paths_reason": {
+      "description": "Graf yolundaki hariç tutmalar ve aday eleme gerekçeleri.",
+      "items": {
+        "$ref": "#/$defs/ExcludedPathReason"
+      },
+      "title": "Excluded Paths Reason",
+      "type": "array"
+    },
+    "tariff_engineering_advice": {
+      "$ref": "#/$defs/TariffEngineeringAdvice",
+      "description": "Monte/demonte senaryosu; kanıt yoksa inceleme gerekli."
+    },
+    "mfn_rates": {
+      "$ref": "#/$defs/MarketRates",
+      "description": "US, EU, UK ve CN için mevcut MFN örnek oranları ve kaynak tarihi."
+    },
+    "fta_origin": {
+      "$ref": "#/$defs/FTAAssessment",
+      "description": "Sağlanan anlaşma kuralı ve menşe kanıtına göre FTA değerlendirmesi."
+    },
+    "search_metadata": {
+      "$ref": "#/$defs/SearchMetadata",
+      "description": "Dil algılama, arama terimleri ve aday kaynağı."
+    }
+  },
+  "required": [
+    "classification_status",
+    "hs_code_6",
+    "hs_code_10",
+    "product_analysis",
+    "gri_decision_tree",
+    "candidate_headings",
+    "final_classification",
+    "missing_information",
+    "excluded_paths_reason",
+    "tariff_engineering_advice",
+    "mfn_rates",
+    "fta_origin",
+    "search_metadata"
+  ],
+  "title": "ClassificationResponse",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tarifelab.local/schemas/classification-response.schema.json"
+}
+
