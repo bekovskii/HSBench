@@ -67,6 +67,16 @@ class HSGraph:
             if edge.child not in self.nodes:
                 raise ValueError(f"Unknown taxonomy child: {edge.child}")
             self._add_typed_edge(edge.parent, edge.child, PARENT_EDGE)
+        # HSBench omits many code-prefix links; HS headings and subheadings inherit those parents.
+        for node in nodes:
+            if node.level == "heading":
+                parent = node.code[:2]
+                if parent in self.nodes and self.nodes[parent].level == "chapter":
+                    self._add_typed_edge(parent, node.code, PARENT_EDGE)
+            elif node.level == "subheading":
+                parent = node.code[:4]
+                if parent in self.nodes and self.nodes[parent].level == "heading":
+                    self._add_typed_edge(parent, node.code, PARENT_EDGE)
         for source, rules in self.exclusion_rules.items():
             if source not in self.nodes:
                 raise ValueError(f"Unknown exclusion source: {source}")
@@ -109,7 +119,7 @@ class HSGraph:
             data.update(attrs)
 
     @classmethod
-    def load(cls, repository_root: Path = REPOSITORY_ROOT) -> "HSGraph":
+    def build_from_source(cls, repository_root: Path = REPOSITORY_ROOT) -> "HSGraph":
         knowledge = repository_root / "knowledge"
         if not knowledge.is_dir():
             knowledge = repository_root / "data" / "graph"
@@ -117,6 +127,58 @@ class HSGraph:
         taxonomy = HSTaxonomy.model_validate_json((knowledge / "hs_taxonomy.json").read_bytes())
         exclusions = HSExclusions.model_validate_json((knowledge / "hs_exclusions.json").read_bytes())
         return cls(nodes, taxonomy, exclusions)
+
+    @classmethod
+    def load(cls, repository_root: Path = REPOSITORY_ROOT) -> "HSGraph":
+        knowledge = repository_root / "knowledge"
+        if not knowledge.is_dir():
+            knowledge = repository_root / "data" / "graph"
+        nodes = _NODE_LIST.validate_json((knowledge / "hs_nodes.json").read_bytes())
+        taxonomy = HSTaxonomy.model_validate_json((knowledge / "hs_taxonomy.json").read_bytes())
+        exclusions = HSExclusions.model_validate_json((knowledge / "hs_exclusions.json").read_bytes())
+
+        instance = cls.__new__(cls)
+        instance.nodes = {node.code: node for node in nodes}
+        if len(instance.nodes) != len(nodes):
+            raise ValueError("hs_nodes.json contains duplicate codes")
+        instance.nodes[ROOT_CODE] = HSNode(code=ROOT_CODE, level="root", name="HS taxonomy")
+        instance.levels = taxonomy.levels
+        instance.exclusion_rules = exclusions.root
+        instance.graph = cls.load_pickle(repository_root / "graph.pkl")
+
+        unresolved = {
+            instance._resolve_target(rule.target)
+            for rules in instance.exclusion_rules.values()
+            for rule in rules
+            if instance._resolve_target(rule.target) not in instance.nodes
+        }
+        expected_nodes = set(instance.nodes) | unresolved
+        if set(instance.graph) != expected_nodes:
+            raise ValueError("graph.pkl nodes do not match the validated HS source files")
+        for source, target in ((edge.parent, edge.child) for edge in taxonomy.edges):
+            data = instance.graph.get_edge_data(source, target)
+            if data is None or PARENT_EDGE not in data.get("edge_types", []):
+                raise ValueError(f"graph.pkl is missing taxonomy edge {source} -> {target}")
+        for node in nodes:
+            if node.level in {"heading", "subheading"}:
+                parent = node.code[:2] if node.level == "heading" else node.code[:4]
+                data = instance.graph.get_edge_data(parent, node.code)
+                expected_level = "chapter" if node.level == "heading" else "heading"
+                if parent not in instance.nodes or instance.nodes[parent].level != expected_level or data is None or PARENT_EDGE not in data.get("edge_types", []):
+                    raise ValueError(f"graph.pkl is missing {node.level} parent edge {parent} -> {node.code}")
+        for source, rules in instance.exclusion_rules.items():
+            for rule in rules:
+                target = instance._resolve_target(rule.target)
+                data = instance.graph.get_edge_data(source, target)
+                if data is None or EXCLUDES_EDGE not in data.get("edge_types", []):
+                    raise ValueError(f"graph.pkl is missing exclusion edge {source} -> {target}")
+                if not any(
+                    item.get("source_target") == rule.target and item.get("condition") == rule.condition
+                    for item in data.get("exclusions", [])
+                ):
+                    raise ValueError(f"graph.pkl exclusion data differs for {source} -> {target}")
+        instance.unresolved_targets = unresolved
+        return instance
 
     def node(self, code: str) -> HSNode | None:
         return self.nodes.get(code)
@@ -198,23 +260,25 @@ class HSGraph:
 
 
 if __name__ == "__main__":
+    graph = HSGraph.build_from_source()
+    output = graph.save()
     graph = HSGraph.load()
     assert graph.node("1类") is not None
     assert graph.children(ROOT_CODE)
     assert graph.exclusions("6类")
-    started = perf_counter()
-    assert graph.graph.has_edge("6类", graph._resolve_target("26"))
     assert EXCLUDES_EDGE in graph.graph.edges["6类", graph._resolve_target("26")]["edge_types"]
-    query_ms = (perf_counter() - started) * 1000
-    assert query_ms < 50
-    output = graph.save()
-    loaded = HSGraph.load_pickle(output)
-    assert loaded.has_edge("6类", graph._resolve_target("26"))
     hs6 = graph.classification_context("850760")
     assert hs6["chapter"]["code"] == "85" and hs6["heading"]["code"] == "8507"
     assert hs6["within_50ms"]
+    timings = [
+        graph.classification_context(code)["query_ms"]
+        for code, node in graph.nodes.items()
+        if node.level == "subheading"
+    ]
+    assert timings and max(timings) < 50
     print(
-        f"Saved {graph.graph.number_of_nodes():,} nodes / {graph.graph.number_of_edges():,} edges to {output}; "
-        f"exclusion lookup {query_ms:.3f} ms; unresolved targets {ascii(sorted(graph.unresolved_targets))}."
+        f"Saved and loaded {graph.graph.number_of_nodes():,} nodes / {graph.graph.number_of_edges():,} edges from {output}; "
+        f"checked {len(timings):,} HS6 lookups under 50 ms; max {max(timings):.3f} ms; "
+        f"unresolved targets {ascii(sorted(graph.unresolved_targets))}."
     )
 
