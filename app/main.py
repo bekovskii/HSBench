@@ -22,7 +22,7 @@ from app.schemas.classification import (
     classification_json_schema,
 )
 from app.schemas.requests import ProductClassificationRequest
-from app.schemas.tariff import FTAAssessmentRequest, FTAAssessmentResult, TariffEngineeringRequest
+from app.schemas.tariff import FTAAssessmentRequest, FTAAssessmentResult, TariffEngineeringRequest, TariffEngineeringResult
 from app.schemas.hs_graph import HSGraph
 from core.duty_lookup import lookup_hs6, mfn_rates, search
 from core.search.gemini import GeminiUnavailable, classify_with_gri, generate_search_terms
@@ -278,7 +278,7 @@ def evaluate_origin(payload: FTAAssessmentRequest):
     return evaluate_fta_origin(payload)
 
 
-@app.post("/api/tariff-engineering/compare")
+@app.post("/api/tariff-engineering/compare", response_model=TariffEngineeringResult)
 def compare_tariff_scenario(payload: TariffEngineeringRequest):
     for code in {payload.assembled_hs6, payload.unassembled_hs6}:
         if GRAPH.node(code) is None:
