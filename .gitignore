@@ -1,0 +1,12 @@
+.sources/
+.venv/
+.env*
+!.env.example
+frontend/node_modules/
+frontend/.next/
+__pycache__/
+*.py[cod]
+*.parquet
+data/intermediate/
+data/early_access.sqlite3
+
