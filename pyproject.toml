@@ -14,6 +14,18 @@ dependencies = [
     "uvicorn[standard]>=0.30,<1",
 ]
 
+[project.optional-dependencies]
+search = [
+    "faiss-cpu>=1.11,<2",
+    "sentence-transformers>=5,<6",
+    "polars>=1.31,<2",
+    "python-dotenv>=1,<2",
+    "translators>=5.9,<6",
+    "connectorx>=0.4,<1",
+    "pyarrow>=23,<24",
+    "instructor>=1.14,<2",
+]
+
 [tool.setuptools.packages.find]
 include = ["core*", "app*"]
 
