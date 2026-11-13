@@ -1,111 +1,52 @@
-# HSBench
+# TarifeLab — HS/GTİP sınıflandırma prototipi
 
-This repository is the official open-source companion to the paper:
+## Tek sınıflandırma sözleşmesi
 
-**HSGraphAgent: Knowledge-Graph-Guided Large Language Models for Harmonized System Code Classification**
+`app/schemas/classification.py` bütün sınıflandırma yanıtlarının Pydantic v2 modelidir. JSON Schema çıktısı `schemas/classification_response.schema.json` dosyasına `.venv\Scripts\python -m app.schemas.classification` komutuyla üretilir. Eski `ClassificationResponse.txt` taslağı bu sözleşmeye dönüştürülmüştür; uygulama ve prompt artık generated şemayı kullanır.
 
-The paper has been accepted at **ACL 2026 main**.
+`gri_system_prompt.md`, `/api/classify` içinde Google AI Studio çağrısının sistem promptudur. İstekler önce 5–8 HS terimine genişletilir, en fazla beş aday aranır ve model yanıtı Pydantic sözleşmesiyle doğrulanır. HS6 kodu aday listesi ve bilgi grafiğiyle tekrar kontrol edilir. Model varsayılanı görseldeki `gemini-2.5-pro` değeridir; `GEMINI_MODEL` ile değiştirilebilir. Google yeni projelerde daha güncel modelleri önerdiğinden 2.5 Pro erişimini API anahtarınızla doğrulayın. Sınıflandırma için `GEMINI_API_KEY` gerekir.
 
-English / [中文](README.zh.md)
+## Uç noktalar
 
-## Overview
+- `POST /api/classify`: ürün olgularından GRI 1–6 analizi ve canonical JSON yanıtı.
+- `GET /api/contracts/classification-response`: aynı Pydantic modelinden üretilen JSON Schema.
+- `GET /api/hs/{code}`: fasıl, pozisyon ve bilgi grafiğindeki hariç tutma kuralları.
+- `POST /api/tariff-engineering/compare`: monte/demonte oran karşılaştırması ve GRI 2(a) inceleme kapısı.
+- `POST /api/fta/evaluate`: çağıranın resmi kaynağını doğruladığını açıkça belirtmesi halinde, yürürlük tarihi verilen FTA şartlarını BOM/menşe kanıtıyla değerlendirir. Kaynak doğrulama işareti yoksa sonuç `insufficient_data` kalır.
 
-HSBench provides:
+## Çalıştırma
 
-- A knowledge graph for Harmonized System (HS) codes
-- Benchmark datasets for HS code classification
-- Open resources that support the paper's graph-guided modeling and dataset design
+Python 3.12+ ve Node.js 20.9+ gerekir. API:
 
-This repository provides an open and extensible benchmark and knowledge resource for hierarchical HS code classification and reasoning.
-
-The release includes a curated HS-domain knowledge base together with multilingual benchmark datasets for evaluating structure-aware, graph-guided, and reasoning-based classification methods.
-
-## Repository structure
-
-- `knowledge/`: machine-readable HS knowledge graph data
-- `datasets/`: multilingual benchmark datasets for HS classification
-  - `datasets/cn/`: Chinese benchmark sets
-  - `datasets/en/`: English benchmark sets
-- `hscode_cn_2025/`: Chinese HS hierarchy and rule resources in CSV format
-
-## Motivation and Scope
-
-Accurate classification under the Harmonized System is hierarchical, rule-constrained, and knowledge-intensive. Many benchmarks still treat HS coding as flat text classification and do not expose hierarchy, exclusion rules, or a clean split between domain knowledge and task data.
-
-This repository addresses that gap by releasing:
-
-- a structured HS knowledge layer covering taxonomy, definitions, and exclusions
-- task-oriented benchmark datasets for hierarchical consistency and reasoning evaluation
-
-The knowledge resources are reusable on their own and are not tied to one model or evaluation setup.
-
-## HS Knowledge Resources
-
-The `knowledge/` directory stores task-independent HS domain knowledge.
-
-### `knowledge/hs_nodes.json`
-
-Defines HS nodes across hierarchical levels. Each node includes a code, level, and official name, and may also include a semantic summary, explanatory description, or exclusion note.
-
-### `knowledge/hs_taxonomy.json`
-
-Defines the explicit hierarchy of the HS system through parent-child relations across these levels:
-
-- `section`
-- `chapter`
-- `heading`
-- `subheading`
-- `extension`
-
-### `knowledge/hs_exclusions.json`
-
-Encodes exclusion relations derived from HS explanatory rules. This supports regulation-aware reasoning, invalid-path detection, and hierarchical backtracking.
-
-## Benchmark Datasets
-
-The `datasets/` directory contains task-oriented HS classification benchmarks, organized by language and label granularity.
-
-- Languages: `cn`, `en`
-- Granularity: 4-digit, 6-digit
-
-Each sample contains:
-
-- `id`: unique sample identifier
-- `input.text`: product description text
-- `label`: hierarchical HS labels by level
-
-HS names are excluded from inputs to reduce label leakage.
-
-### `datasets/*/hsbench_4digit.json`
-
-Targets 4-digit heading classification. Labels include `hs2` and `hs4`.
-
-### `datasets/*/hsbench_6digit.json`
-
-Targets 6-digit subheading classification. Labels include `hs2`, `hs4`, and `hs6`.
-
-## Purpose
-
-This repository is intended for HS code classification and reasoning research, especially:
-
-- studying hierarchical HS coding
-- enabling knowledge-graph-guided LLM methods
-- providing reproducible data and knowledge resources
-
-## Citation
-
-If you use the resources in this repository, please cite the paper:
-
-```
-@inproceedings{xia2026hsgraphagent,
-  title={HSGraphAgent: Knowledge-Graph-Guided Large Language Models for Harmonized System Code Classification},
-  author={Xia, Qiang and Zhang, Zijian and Wang, Ao and Wang, Wenhan and Wang, Xiangyu and Li, Jian},
-  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
-  pages={44761--44773},
-  year={2026}
-}
+```powershell
+py -3.13 -m venv .venv
+.venv\Scripts\python -m pip install -e .
+.venv\Scripts\python -m uvicorn app.main:app --reload
 ```
 
-## TarifeLab MVP and GRI contract
+Next.js arayüzü ayrı terminalde:
 
-The integrated FastAPI and Next.js validation app, GRI prompt, generated Pydantic JSON Schema, optional FAISS search, FTA origin evaluator, and assembled/unassembled tariff audit are documented in [TARIFELAB_README.md](TARIFELAB_README.md) and [MVP_VALIDATION.md](MVP_VALIDATION.md). The canonical prompt is [`gri_system_prompt.md`](gri_system_prompt.md); the response schema is [`schemas/classification_response.schema.json`](schemas/classification_response.schema.json).
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+FAISS indeksini ve Harvard sınıflandırıcısını kullanmak için `.venv\Scripts\python -m pip install -e ".[search]"`, Atlas bağlantı değişkenleri ve `data/intermediate/hs12_4_index.parquet` gerekir. Bunlar yoksa arama 375 kodluk örnek tarife tablosuna düşer; örnek veri resmi sınıflandırma kaynağı değildir.
+
+## Veri kapsamı ve sınırlar
+
+- HSBench düğüm, taksonomi ve hariç tutma verileri Pydantic v2 ile doğrulanır; API başlangıcında `graph.pkl` yüklenir ve kaynak JSON ile düğüm/kenar tutarlılığı denetlenir. Kaynak grafik Çincedir. Upstream depoda lisans dosyası bulunmadığından graf verisini yeniden dağıtma hakkı teyit edilmelidir.
+- HSBench kaynağında bazı 4 haneli pozisyon → 6 haneli alt pozisyon kenarları yoktur. Grafik üreticisi bu standart HS kod öneklerinden ebeveyn kenarlarını ekler; tüm 5.615 HS6 düğümü için fasıl/pozisyon yolu sorgulanıp 50 ms sınırı denetlenir.
+- `data/tariffs/hs6-tariff-sample.csv` 375 örnek HS6 satırıdır; oranlar 2026-08-03 tarihinde doğrulanmıştır, canlı tarife API'si değildir. Kodun 8–12 haneli ulusal uzantıları mevcut veriyle doğrulanamaz ve `null` kalır.
+- GenPark reposundaki tasarruf aritmetiği kullanılır. Orijinal depoda uygulanabilir FTA kural tablosu yoktur; menşe motoru burada anlaşma adı, resmi kural metni/kaynağı, yürürlük tarihi ve BOM kanıtı verilmeden uygunluk kararı üretmez.
+- GRI 2(a) olguları demonte sunumda farklı vergi oranı önermekten önce incelenir. Aday kodlar resmi kaynakla doğrulanmamışsa tahmini tasarruf gösterilmez.
+- Ürün URL'si açılmaz; yalnız görünen yol/metin kullanılır. Erken erişim e-postası yerel SQLite dosyasına kaydedilir. Kamuya açık kullanım için resmi tarife kaynakları, kalıcı veri tabanı, gizlilik metni ve servis dağıtımı yapılandırılmalıdır.
+
+## Kaynak repolar
+
+- HSBench: `data/graph/` ve `.sources/HSBench/knowledge/`.
+- Harvard `hscode-mapping`: `core/search/hs_classifier/` ve `core/search/language.py`.
+- GenPark savings arithmetic: `core/tariff_engine/savings.py`; deterministic FTA and GRI 2(a) scenario evaluation: `core/tariff_engine/`.
+- `hs-code-lookup`: `core/duty_lookup/` ve `data/tariffs/`.
+
