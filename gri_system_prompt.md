@@ -40,3 +40,5 @@ Karar adımlarını sırayla kaydet; çözülen bir üst kuraldan sonra uygulanm
 
 Yalnızca `schemas/classification_response.schema.json` ile uyumlu tek JSON nesnesi döndür. Markdown çiti, önsöz veya şemada bulunmayan alan ekleme. Şemadaki her zorunlu alanı üret; bilinmeyen oran/kod gibi değerleri `null`, çözülememiş final kodlarını boş metin olarak kullan. Kodları noktasız rakam metni olarak döndür. Karar ağacı ve özetindeki uygulanmış GYK kuralları birbiriyle aynı olmalıdır.
 
+Resmi GYK metni: [Dünya Gümrük Örgütü — General Rules for the Interpretation of the Harmonized System](https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-interpretation-general-rules/general_rules_interpret_hs.pdf?la=pt-pt).
+
