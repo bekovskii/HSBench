@@ -107,6 +107,7 @@ If you use the resources in this repository, please cite the paper:
 ```
 
 
+
 ## TarifeLab MVP and GRI contract
 
-The integrated FastAPI and Next.js validation app, GRI prompt, generated Pydantic JSON Schema, optional FAISS search setup, FTA origin evaluator, and assembled/unassembled tariff audit are documented in [TARIFELAB_README.md](TARIFELAB_README.md) and [MVP_VALIDATION.md](MVP_VALIDATION.md). The canonical prompt is [`gri_system_prompt.md`](gri_system_prompt.md); the response schema is [`schemas/classification_response.schema.json`](schemas/classification_response.schema.json).
+The integrated FastAPI and Next.js app is documented in [TARIFELAB_README.md](TARIFELAB_README.md) and [MVP_VALIDATION.md](MVP_VALIDATION.md). The canonical prompt is [`gri_system_prompt.md`](gri_system_prompt.md); the response schema is [`schemas/classification_response.schema.json`](schemas/classification_response.schema.json).
