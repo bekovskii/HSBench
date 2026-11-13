@@ -1,0 +1,273 @@
+Warning: truncated output (original token count: 17067)
+Total output lines: 377
+
+hs6_code,chapter,description,coverage,us_mfn_pct,eu_mfn_pct,uk_mfn_pct,cn_mfn_pct,us_duty_type,eu_duty_type,uk_duty_type,cn_duty_type,us_specific_rule,eu_specific_rule,uk_specific_rule,cn_specific_rule,us_vat_pct,eu_vat_pct,uk_vat_pct,cn_vat_pct,last_verified
+010612,01,"Whales, dolphins and porpoises (mammals of the order Cetacea); manatees and dugongs (mammals of the order Sirenia); seals, sea lions and walruses (mammals of the suborder Pinnipedia)",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+010613,01,Camels and other camelids (Camelidae),US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+010620,01,Reptiles (including snakes and turtles),US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+010632,01,"Psittaciformes (including parrots, parakeets, macaws and cockatoos)",US/EU/UK/CN,1.8,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+010633,01,Ostriches; emus (Dromaius novaehollandiae),US/EU/UK/CN,1.8,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+020312,02,"Hams, shoulders and cuts thereof, with bone in",US/EU/UK/CN,0,0,0,20,ad_valorem,specific,specific,ad_valorem,,77.8 EUR/100kg,,,0,20,0,13,2026-08-03
+020421,02,"Other meat of sheep, fresh or chilled",US/EU/UK/CN,0,12.8,12,23,specific,specific,specific,ad_valorem,,171.3 EUR/100kg,,,0,20,0,13,2026-08-03
+020711,02,Of fowls of the species Gallus domesticus,US/EU/UK/CN,0,0,0,20,specific,specific,specific,ad_valorem,,26.2 EUR/100kg,,,0,20,0,13,2026-08-03
+020840,02,"Of whales, dolphins and porpoises (mammals of the order Cetacea); of manatees and dugongs (mammals of the order Sirenia); of seals, sea lions and walruses (mammals of the suborder Pinnipedia)",US/EU/UK/CN,6.4,6.4,6,23,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+021012,02,Bellies (streaky) and cuts thereof,US/EU/UK/CN,0,0,14,25,specific,specific,specific,ad_valorem,,46.7 EUR/100kg,,,0,20,0,13,2026-08-03
+030193,03,"Carp (Cyprinus spp., Carassius spp., Ctenopharyngodon idellus, Hypophthalmichthys spp., Cirrhinus spp., Mylopharyngodon piceus, Catla catla, Labeo spp., Osteochilus hasselti, Leptobarbus hoeveni, Megalobrama spp.)",US/EU/UK/CN,0,8,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+030256,03,"Blue whiting (Micromesistius poutassou, Micromesistius australis)",US/EU/UK/CN,3,7.5,6,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+030353,03,"Sardines (Sardina pilchardus, Sardinops spp.), sardinella (Sardinella spp.), brisling or sprats (Sprattus sprattus)",US/EU/UK/CN,0,23,12,7,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+030472,03,Haddock (Melanogrammus aeglefinus),US/EU/UK/CN,0,7.5,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+030553,03,"Fish of the families Bregmacerotidae, Euclichthyidae, Gadidae, Macrouridae, Melanonidae, Merlucciidae, Moridae and Muraenolepididae, other than cod (Gadus morhua, Gadus ogac, Gadus macrocephalus)",US/EU/UK/CN,0,12,12,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+040110,04,"Of a fat content, by weight, not exceeding 1 %",US/EU/UK/CN,0,0,0,15,specific,specific,specific,ad_valorem,,13.8 EUR/100kg,,,0,20,0,13,2026-08-03
+040140,04,"Of a fat content, by weight, exceeding 6 % but not exceeding 10 %",US/EU/UK/CN,0,0,0,15,ad_valorem,specific,specific,ad_valorem,,57.5 EUR/100kg,,,0,20,0,13,2026-08-03
+040210,04,"In powder, granules or other solid forms, of a fat content, by weight, not exceeding 1,5 %",US/EU/UK/CN,0,0,0,10,ad_valorem,specific,specific,ad_valorem,,125.4 EUR/100kg,,,0,20,0,13,2026-08-03
+040410,04,"Whey and modified whey, whether or not concentrated or containing added sugar or other sweetening matter",US/EU/UK/CN,8.5,0,0,6,ad_valorem,specific,specific,ad_valorem,,7 EUR/100kg,,,0,20,0,13,2026-08-03
+040620,04,"Grated or powdered cheese, of all kinds",US/EU/UK/CN,16,0,0,12,ad_valorem,specific,specific,ad_valorem,,188.2 EUR/100kg,,,0,20,0,13,2026-08-03
+050510,05,Feathers of a kind used for stuffing; down,US/EU/UK/CN,0,0,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+050610,05,Ossein and bones treated with acid,US/EU/UK/CN,0,0,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+060110,06,"Bulbs, tubers, tuberous roots, corms, crowns and rhizomes, dormant",US/EU/UK/CN,3.5,5.1,4,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+060120,06,"Bulbs, tubers, tuberous roots, corms, crowns and rhizomes, in growth or in flower; chicory plants and roots",US/EU/UK/CN,1.4,9.6,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+060220,06,"Trees, shrubs and bushes, grafted or not, of kinds which bear edible fruit or nuts",US/EU/UK/CN,0,8.3,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+060230,06,"Rhododendrons and azaleas, grafted or not",US/EU/UK/CN,1.9,8.3,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+070200,07,"Whole tomatoes, with greatest diameter of less than 47 mm",US/EU/UK/CN,0,8.8,14,13,ad_valorem,specific,ad_valorem,ad_valorem,,2.7 EUR/100kg + 4.1 EUR/100kg + 1.4 EUR/100kg + 5.4 EUR/100kg + 29.8 EUR/100kg,,,0,20,0,13,2026-08-03
+070953,07,Mushrooms of the genus Cantharellus,US/EU/UK/CN,20,3.2,0,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+070970,07,"Spinach, New Zealand spinach and orache spinach (garden spinach)",US/EU/UK/CN,20,10.4,0,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+071022,07,"Beans (Vigna spp., Phaseolus spp.)",US/EU/UK/CN,11.2,14.4,14,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+071231,07,"Mushrooms, wood ears (Auricularia spp.), jelly fungi (Tremella spp.) and truffles",US/EU/UK/CN,1.8,12.8,0,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+080221,08,Hazelnuts or filberts (Corylus spp.),US/EU/UK/CN,0,3.2,0,25,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+080450,08,"Guavas, mangoes and mangosteens",US/EU/UK/CN,0,0,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+080521,08,"Mandarins (including tangerines and satsumas); clementines, wilkings and similar citrus hybrids",US/EU/UK/CN,0,16,16,12,specific,specific,ad_valorem,ad_valorem,,2.3 EUR/100kg + 10.6 EUR/100kg + 1.1 EUR/100kg + 1.7 EUR/100kg + 0.6 EUR/100kg,,,0,20,0,13,2026-08-03
+080550,08,"Lemons (Citrus limon, Citrus limonum) and limes (Citrus aurantifolia, Citrus latifolia)",US/EU/UK/CN,0.8,6.4,6,11,ad_valorem,specific,ad_valorem,ad_valorem,,25.6 EUR/100kg + 2.8 EUR/100kg + 3.7 EUR/100kg + 0.9 EUR/100kg + 1.8 EUR/100kg,,,0,20,0,13,2026-08-03
+081020,08,"Raspberries, blackberries, mulberries and loganberries",US/EU/UK/CN,0,9.6,8,25,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+090210,09,Green tea (not fermented) in immediate packings of a content not exceeding 3 kg,US/EU/UK/CN,6.4,3.2,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+090220,09,Other green tea (not fermented),US/EU/UK/CN,6.4,0,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+090230,09,"Black tea (fermented) and partly fermented tea, in immediate packings of a content not exceeding 3 kg",US/EU/UK/CN,0,0,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+090240,09,Other black tea (fermented) and other partly fermented tea,US/EU/UK/CN,0,0,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+090421,09,Fruit of the genus Capsicum or of the genus Pimenta,US/EU/UK/CN,0,9.6,0,20,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+100610,10,Rice in the husk (paddy or rough),US/EU/UK/CN,0,0,6,65,specific,specific,specific,ad_valorem,,211 EUR/t,,,0,20,0,13,2026-08-03
+100630,10,"Semi-milled or wholly milled rice, whether or not polished or glazed",US/EU/UK/CN,11.2,0,0,65,ad_valorem,specific,specific,ad_valorem,,175 EUR/t,,,0,20,0,13,2026-08-03
+110422,11,"Other worked grains (for example, hulled, pearled, sliced or kibbled)",US/EU/UK/CN,0.5,0,0,20,ad_valorem,specific,specific,ad_valorem,,145 EUR/t,,,0,20,0,13,2026-08-03
+110430,11,"Germ of cereals, whole, rolled, flaked or ground",US/EU/UK/CN,4.5,0,0,20,ad_valorem,specific,specific,ad_valorem,,76 EUR/t,,,0,20,0,13,2026-08-03
+110610,11,Of the dried leguminous vegetables of heading 0713,US/EU/UK/CN,8.3,50,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+110620,11,Of sago or of roots or tubers of heading 0714,US/EU/UK/CN,8.3,0,0,20,ad_valorem,specific,specific,ad_valorem,,95 EUR/t,,,0,20,0,13,2026-08-03
+120924,12,Kentucky blue grass (Poa pratensis L.) seeds,US/EU/UK/CN,0,0,0,0,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+120925,12,"Ryegrass (Lolium multiflorum Lam., Lolium perenne L.) seeds",US/EU/UK/CN,0,0,0,0,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+120930,12,Seeds of herbaceous plants cultivated principally for their flowers,US/EU/UK/CN,0,3,0,0,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+121160,12,Bark of African cherry (Prunus africana),US/EU/UK/CN,0,0,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+121410,12,Lucerne (alfalfa) meal and pellets,US/EU/UK/CN,1.4,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+130220,13,"Pectic substances, pectinates and pectates",US/EU/UK/CN,0,19.2,0,20,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+130231,13,"Mucilages and thickeners, whether or not modified, derived from vegetable products",US/EU/UK/CN,0,0,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+130232,13,"Mucilages and thickeners, whether or not modified, derived from locust beans, locust bean seeds or guar seeds",US/EU/UK/CN,0,0,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+150410,15,Fish-liver oils and their fractions,US/EU/UK/CN,2.5,0,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+150710,15,"Crude oil, whether or not degummed",US/EU/UK/CN,19.1,0,6,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+151311,15,Coconut (copra) oil and its fractions,US/EU/UK/CN,0,12.8,6,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+151521,15,Maize (corn) oil and its fractions,US/EU/UK/CN,3.4,50,6,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+151620,15,Vegetable fats and oils and their fractions,US/EU/UK/CN,7.7,50,10.9,25,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+160232,16,Of fowls of the species Gallus domesticus,US/EU/UK/CN,6.4,0,0,5,ad_valorem,specific,specific,ad_valorem,,2765 EUR/t,,,0,20,0,13,2026-08-03
+160290,16,"Other, including preparations of blood of any animal",US/EU/UK/CN,6.4,0,16,5,ad_valorem,specific,specific,ad_valorem,,85.7 EUR/100kg,,,0,20,0,13,2026-08-03
+160300,16,In immediate packings of a net content of 1 kg or less,US/EU/UK/CN,8.5,12.8,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+160411,16,"Fish, whole or in pieces, but not minced",US/EU/UK/CN,6,5.5,4,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+160413,16,"Sardines, sardinella and brisling or sprats",US/EU/UK/CN,15,12.5,12,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+170112,17,Raw sugar not containing added flavouring or colouring matter,US/EU/UK/CN,0,0,0,50,ad_valorem,specific,specific,ad_valorem,,41.9 EUR/100kg,,,0,20,0,13,2026-08-03
+170113,17,Cane sugar specified in subheading note 2 to this chapter,US/EU/UK/CN,0,0,0,50,ad_valorem,specific,specific,ad_valorem,,41.9 EUR/100kg,,,0,20,0,13,2026-08-03
+170230,17,"Glucose and glucose syrup, not containing fructose or containing in the dry state less than 20 % by weight of fructose",US/EU/UK/CN,6,0,0,30,ad_valorem,specific,specific,ad_valorem,,20 EUR/100kg,,,0,20,20,13,2026-08-03
+170240,17,"Glucose and glucose syrup, containing in the dry state at least 20 % but less than 50 % by weight of fructose, excluding invert sugar",US/EU/UK/CN,6,0,0,30,ad_valorem,specific,specific,ad_valorem,,50.7 EUR/100kg,,,0,20,20,13,2026-08-03
+170260,17,"Other fructose and fructose syrup, containing in the dry state more than 50 % by weight of fructose, excluding invert sugar",US/EU/UK/CN,5.1,0,0,30,ad_valorem,specific,specific,ad_valorem,,50.7 EUR/100kg,,,0,20,0,13,2026-08-03
+180610,18,"Cocoa powder, containing added sugar or other sweetening matter",US/EU/UK/CN,10,8,8,10,ad_valorem,specific,specific,ad_valorem,,25.2 EUR/100kg,,,0,20,20,13,2026-08-03
+180620,18,"Other preparations in blocks, slabs or bars weighing more than 2 kg or in liquid, paste, powder, granular or other bulk form in containers or immediate packings, of a content exceeding 2 kg",US/EU/UK/CN,5,8.3,8,10,ad_valorem,specific,ad_valorem,ad_valorem,,18.7 EUR/,,,0,20,20,13,2026-08-03
+180631,18,"Other, in blocks, slabs or bars",US/EU/UK/CN,5.6,8.3,0,8,ad_valorem,specific,ad_valorem,ad_valorem,,18.7 EUR/,,,0,20,20,13,2026-08-03
+190110,19,"Preparations suitable for infants or young children, put up for retail sale",US/EU/UK/CN,17.5,7.6,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+190120,19,Mixes and doughs for the preparation of bakers' wares of heading 1905,US/EU/UK/CN,10,7.6,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+190211,19,"Uncooked pasta, not stuffed or otherwise prepared",US/EU/UK/CN,6.4,7.7,6,10,ad_valorem,specific,specific,ad_valorem,,24.6 EUR/100kg,,,0,20,0,13,2026-08-03
+190220,19,"Stuffed pasta, whether or not cooked or otherwise prepared",US/EU/UK/CN,6.4,0,8,10,ad_valorem,specific,specific,ad_valorem,,54.3 EUR/100kg,,,0,20,0,13,2026-08-03
+190410,19,Prepared foods obtained by the swelling or roasting of cereals or cereal products,US/EU/UK/CN,1.1,3.8,4,10,ad_valorem,specific,specific,ad_valorem,,20 EUR/100kg,,,0,20,20,13,2026-08-03
+200310,20,Mushrooms of the genus Agaricus,US/EU/UK/CN,8.5,18.4,0,5,ad_valorem,specific,ad_valorem,ad_valorem,,191 EUR/100kg,,,0,20,0,13,2026-08-03
+200551,20,"Beans (Vigna spp., Phaseolus spp.)",US/EU/UK/CN,0,17.6,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+200591,20,Other vegetables and mixtures of vegetables,US/EU/UK/CN,11.2,17.6,16,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+200891,20,"Other, including mixtures other than those of subheading 2008 19",US/EU/UK/CN,0.9,10,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+200912,20,"Not frozen, of a Brix value not exceeding 20",US/EU/UK/CN,0,12.2,12,30,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+210111,21,"Extracts, essences and concentrates, of coffee, and preparations with a basis of these extracts, essences or concentrates or with a basis of coffee",US/EU/UK/CN,0,9,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+210120,21,"Extracts, essences and concentrates, of tea or maté, and preparations with a basis of these extracts, essences or concentrates, or with a basis of tea or maté",US/EU/UK/CN,10,6,6,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+210220,21,"Inactive yeasts; other single-cell micro-organisms, dead",US/EU/UK/CN,6.4,8.3,0,25,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+210330,21,Mustard flour and meal and prepared mustard,US/EU/UK/CN,0,9,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+210420,21,Homogenised composite food preparations,US/EU/UK/CN,2.5,14.1,14,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,0,13,2026-08-03
+220210,22,"Waters, including mineral waters and aerated waters, containing added sugar or other sweetening matter or flavoured",US/EU/UK/CN,0,9.6,0,5,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+220410,22,Sparkling wine,US/EU/UK/CN,0,0,0,14,specific,specific,specific,ad_valorem,,32 EUR/hl,,,0,20,20,13,2026-08-03
+220421,22,Other wine; grape must with fermentation prevented or arrested by the addition of alcohol,US/EU/UK/CN,0,0,0,14,ad_valorem,specific,specific,ad_valorem,,13.1 EUR/hl,,,0,20,20,13,2026-08-03
+220510,22,In containers holding 2 litres or less,US/EU/UK/CN,0,0,0,65,ad_valorem,specific,ad_valorem,ad_valorem,,10.9 EUR/hl,,,0,20,20,13,2026-08-03
+220720,22,"Ethyl alcohol and other spirits, denatured, of any strength",US/EU/UK/CN,1.9,0,0,30,ad_valorem,specific,specific,ad_valorem,,10.2 EUR/hl,,,0,20,20,13,2026-08-03
+220840,22,Rum and other spirits obtained by distilling fermented sugar-cane products,US/EU/UK/CN,0,0,0,10,ad_valorem,specific,specific,ad_valorem,,0.6 EUR/ASV + 3.2 EUR/hl,,,0,20,20,13,2026-08-03
+230110,23,"Flours, meals and pellets, of meat or meat offal; greaves",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+230120,23,"Flours, meals and pellets, of fish or of crustaceans, molluscs or other aquatic invertebrates",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+230310,23,Residues of starch manufacture and similar residues,US/EU/UK/CN,1.4,0,0,5,ad_valorem,specific,specific,ad_valorem,,320 EUR/t,,,0,20,20,13,2026-08-03
+230320,23,"Beet-pulp, bagasse and other waste of sugar manufacture",US/EU/UK/CN,0,50,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+230330,23,Brewing or distilling dregs and waste,US/EU/UK/CN,0,50,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+240120,24,"Tobacco, partly or wholly stemmed/stripped",US/EU/UK/CN,350,11.2,0,10,ad_valorem,specific,specific,ad_valorem,,56 EUR/100kg + 22 EUR/100kg,,,0,20,20,13,2026-08-03
+240210,24,"Cigars, cheroots and cigarillos, containing tobacco",US/EU/UK/CN,4.7,26,0,25,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+240311,24,"Smoking tobacco, whether or not containing tobacco substitutes in any proportion",US/EU/UK/CN,0,74.9,0,57,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+240411,24,Products intended for inhalation without combustion,US/EU/UK/CN,0,16.6,16,57,specific,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+251110,25,Natural barium sulphate (barytes),US/EU/UK/CN,0,0,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+251120,25,Natural barium carbonate (witherite),US/EU/UK/CN,0,0,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+251320,25,"Emery, natural corundum, natural garnet and other natural abrasives",US/EU/UK/CN,0,0,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+251910,25,Natural magnesium carbonate (magnesite),US/EU/UK/CN,0,0,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+260111,26,"Iron ores and concentrates, other than roasted iron pyrites",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+261510,26,Zirconium ores and concentrates,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+261900,26,Waste suitable for the recovery of iron or manganese,US/EU/UK/CN,0,0,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+270750,27,Other aromatic hydrocarbon mixtures of which 65 % or more by volume (including losses) distils at 250 °C by the ISO 3405 method (equivalent to the ASTM D 86 method),US/EU/UK/CN,0,3,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+271012,27,"Petroleum oils and oils obtained from bituminous minerals (other than crude) and preparations not elsewhere specified or included, containing by weight 70 % or more of petroleum oils or of oils obtained from bituminous minerals, these oils being the basic constituents of the preparations, other than those containing biodiesel and other than waste oils",US/EU/UK/CN,7,4.7,4,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+271020,27,"Petroleum oils and oils obtained from bituminous minerals (other than crude) and preparations not elsewhere specified or included, containing by weight 70 % or more of petroleum oils or of oils obtained from bituminous minerals, these oils being the basic constituents of the preparations, containing biodiesel, other than waste oils",US/EU/UK/CN,0,0,2,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+271114,27,"Ethylene, propylene, butylene and butadiene",US/EU/UK/CN,0,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+271220,27,"Paraffin wax containing by weight less than 0,75 % of oil",US/EU/UK/CN,0,0,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+280511,28,Alkali or alkaline-earth metals,US/EU/UK/CN,5.3,5,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+281640,28,"Oxides, hydroxides and peroxides, of strontium or barium",US/EU/UK/CN,4.2,5.5,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+282570,28,Molybdenum oxides and hydroxides,US/EU/UK/CN,3.2,5.3,4,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+284011,28,Disodium tetraborate (refined borax),US/EU/UK/CN,0.3,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+284430,28,"Uranium depleted in U 235 and its compounds; thorium and its compounds; alloys, dispersions (including cermets), ceramic products and mixtures containing uranium depleted in U 235, thorium or compounds of these products",US/EU/UK/CN,5,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+290311,29,Saturated chlorinated derivatives of acyclic hydrocarbons,US/EU/UK/CN,5.5,5.5,0,5.5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+290517,29,"Dodecan-1-ol (lauryl alcohol), hexadecan-1-ol (cetyl alcohol) and octadecan-1-ol (stearyl alcohol)",US/EU/UK/CN,5,5.5,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+291550,29,"Propionic acid, its salts and esters",US/EU/UK/CN,4.2,4.2,0,5.5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+292142,29,Aniline derivatives and their salts,US/EU/UK/CN,6.5,6.5,6,6.5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+293146,29,"2,4,6-Tripropyl-1,3,5,2,4,6-trioxatriphosphinane 2,4,6-trioxide",US/EU/UK/CN,3.7,6.5,0,6.5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300490,30,Other,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300610,30,"Sterile surgical catgut, similar sterile suture materials (including sterile absorbable surgical or dental yarns) and sterile tissue adhesives for surgical wound closure; sterile laminaria and sterile laminaria tents; sterile absorbable surgical or dental haemostatics; sterile surgical or dental adhesion barriers, whether or not absorbable",US/EU/UK/CN,0,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300630,30,Opacifying preparations for X-ray examinations; diagnostic reagents designed to be administered to the patient,US/EU/UK/CN,0,0,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300640,30,Dental cements and other dental fillings; bone reconstruction cements,US/EU/UK/CN,0,0,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300660,30,"Chemical contraceptive preparations based on hormones, on other products of heading 2937 or on spermicides",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+300670,30,Gel preparations designed to be used in human or veterinary medicine as a lubricant for parts of the body for surgi…5067 tokens truncated…13,2026-08-03
+611522,61,"Of synthetic fibres, measuring per single yarn 67 decitex or more",US/EU/UK/CN,14.9,12,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+611530,61,"Other women's full-length or knee-length hosiery, measuring per single yarn less than 67 decitex",US/EU/UK/CN,14.6,12,12,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+611610,61,"Impregnated, coated, covered or laminated with plastics or rubber",US/EU/UK/CN,23.5,8.9,8,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+630120,63,"Blankets (other than electric blankets) and travelling rugs, of wool or of fine animal hair",US/EU/UK/CN,0,12,12,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+630140,63,"Blankets (other than electric blankets) and travelling rugs, of synthetic fibres",US/EU/UK/CN,8.5,12,12,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+630210,63,"Bed linen, knitted or crocheted",US/EU/UK/CN,6,12,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+630260,63,"Toilet linen and kitchen linen, of terry towelling or similar terry fabrics, of cotton",US/EU/UK/CN,9.1,12,12,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+630533,63,"Other, of polyethylene or polypropylene strip or the like",US/EU/UK/CN,8.4,7.2,6,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640220,64,Footwear with upper straps or thongs assembled to the sole by means of plugs,US/EU/UK/CN,0,17,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640320,64,"Footwear with outer soles of leather, and uppers which consist of leather straps across the instep and around the big toe",US/EU/UK/CN,0,8,0,14,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640340,64,"Other footwear, incorporating a protective metal toecap",US/EU/UK/CN,5,8,0,14,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640351,64,Other footwear with outer soles of leather,US/EU/UK/CN,5,8,8,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640399,64,Other,US/EU/UK/CN,8,8,8,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+640411,64,Footwear with outer soles of rubber or plastics,US/EU/UK/CN,10.5,16.9,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+650500,65,"Of fur felt or of felt of wool and fur, made from the hat bodies, hoods or plateaux of heading 6501 00 00",US/EU/UK/CN,7.9,2.7,2,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+660320,66,"Umbrella frames, including frames mounted on shafts (sticks)",US/EU/UK/CN,12,5.2,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+680210,68,"Tiles, cubes and similar articles, whether or not rectangular (including square), the largest face of which is capable of being enclosed in a square the side of which is less than 7 cm; artificially coloured granules, chippings and powder",US/EU/UK/CN,4.8,0,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+680221,68,"Other monumental or building stone and articles thereof, simply cut or sawn, with a flat or even surface",US/EU/UK/CN,4.2,1.7,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+680410,68,"Millstones and grindstones for milling, grinding or pulping",US/EU/UK/CN,0,0,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+680421,68,"Other millstones, grindstones, grinding wheels and the like",US/EU/UK/CN,0,1.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+680422,68,Of other agglomerated abrasives or of ceramics,US/EU/UK/CN,2,0,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+690911,69,"Ceramic wares for laboratory, chemical or other technical uses",US/EU/UK/CN,4.5,5,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+690912,69,Articles having a hardness equivalent to 9 or more on the Mohs scale,US/EU/UK/CN,4,5,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+700100,70,Cullet and other waste and scrap of glass,US/EU/UK/CN,3,0,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+7007,70,"Safety glass, consisting of toughened (tempered) or laminated glass:",US,0,,,,ad_valorem,,,,,,,,0,,,,2026-08-03
+700711,70,Toughened (tempered) safety glass,US/EU/UK/CN,5.5,3,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+701400,70,"Optical elements of glass (other than those of heading 7015), not optically worked, other than signalling glassware",US/EU/UK/CN,4.1,3,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+701820,70,Glass microspheres not exceeding 1 mm in diameter,US/EU/UK/CN,5,3,0,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+701963,70,"Closed woven fabrics, plain weave, of yarns, not coated or laminated",US/EU/UK/CN,6,7,6,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+711311,71,Of precious metal whether or not plated or clad with precious metal,US/EU/UK/CN,6.3,2.5,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+711319,71,"Of other precious metal, whether or not plated or clad with precious metal",US/EU/UK/CN,5.5,2.5,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+711320,71,Of base metal clad with precious metal,US/EU/UK/CN,7,4,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+711411,71,Of precious metal whether or not plated or clad with precious metal,US/EU/UK/CN,2.8,2,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+711419,71,"Of other precious metal, whether or not plated or clad with precious metal",US/EU/UK/CN,7.9,2,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+720110,72,"Non-alloy pig iron containing by weight 0,5 % or less of phosphorus",US/EU/UK/CN,0,1.7,0,1,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+720120,72,"Non-alloy pig iron containing by weight more than 0,5 % of phosphorus",US/EU/UK/CN,0,2.2,0,1,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+720280,72,Ferro-tungsten and ferro-silico-tungsten,US/EU/UK/CN,5.6,0,0,2,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+720711,72,"Containing by weight less than 0,25 % of carbon",US/EU/UK/CN,0,0,0,2,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+720712,72,"Other, of rectangular (other than square) cross-section",US/EU/UK/CN,0,0,0,2,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+730230,73,"Switch blades, crossing frogs, point rods and other crossing pieces",US/EU/UK/CN,0,2.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+730300,73,Tubes and pipes of a kind used in pressure systems,US/EU/UK/CN,0,3.2,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+730722,73,"Threaded elbows, bends and sleeves",US/EU/UK/CN,6.2,0,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+730792,73,"Threaded elbows, bends and sleeves",US/EU/UK/CN,6.2,0,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+730900,73,For gases (other than compressed or liquefied gas),US/EU/UK/CN,0,2.2,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+741300,74,"With fittings attached, for use in civil aircraft",US/EU/UK/CN,3,5.2,0,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+741510,74,"Nails and tacks, drawing pins, staples and similar articles",US/EU/UK/CN,2.5,4,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+741810,74,"Table, kitchen or other household articles and parts thereof; pot scourers and scouring or polishing pads, gloves and the like",US/EU/UK/CN,3,4,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+741820,74,Sanitary ware and parts thereof,US/EU/UK/CN,3,3,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+741920,74,"Cast, moulded, stamped or forged, but not further worked",US/EU/UK/CN,0,3,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+760310,76,Powders of non-lamellar structure,US/EU/UK/CN,5,5,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+760320,76,Powders of lamellar structure; flakes,US/EU/UK/CN,3.9,5,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+760900,76,For use in certain types of aircraft,US/EU/UK/CN,5.7,5.9,4,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+761010,76,"Doors, windows and their frames and thresholds for doors",US/EU/UK/CN,5.7,6,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+761300,76,"Bottles for inflating escape chutes, intended for use in certain types of aircraft",US/EU/UK/CN,5,6,6,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+780600,78,"Containers with an anti-radiation lead covering, for the transport or storage of radioactive materials",US/EU/UK/CN,1.2,5,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+790112,79,"Containing by weight less than 99,99 % of zinc",US/EU/UK/CN,3,2.5,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+790700,79,"Iron, steel and/or zinc alloy weights:<br>-with a weight of not more than 500 grams and measuring not more than 107 mm x 107 mm x 11 mm,<br>-whether or not with parts of other material,<br>-whether or not with parts of other metals,<br>-whether or not surface treated,<br>-whether or not printed,<br>of a kind used for the production of remote controls",US/EU/UK/CN,3,5,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+810295,81,"Bars and rods, other than those obtained simply by sintering, profiles, plates, sheets, strip and foil",US/EU/UK/CN,6.6,5,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+810320,81,"Unwrought tantalum, including bars and rods obtained simply by sintering; powders",US/EU/UK/CN,2.5,0,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+810430,81,"Raspings, turnings and granules, graded according to size; powders",US/EU/UK/CN,4.4,4,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+810520,81,Cobalt mattes and other intermediate products of cobalt metallurgy; unwrought cobalt; powders,US/EU/UK/CN,4.4,0,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+810610,81,"Containing more than 99,99 % of bismuth, by weight",US/EU/UK/CN,0,2,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+820231,82,Circular saw blades (including slitting or slotting saw blades),US/EU/UK/CN,0,2.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+820510,82,"Drilling, threading or tapping tools",US/EU/UK/CN,6.2,1.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+820530,82,"Planes, chisels, gouges and similar cutting tools for working wood",US/EU/UK/CN,5.7,3.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+820551,82,Other hand tools (including glaziers' diamonds),US/EU/UK/CN,3.7,3.7,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+820590,82,"Other, including sets of articles of two or more subheadings of this heading",US/EU/UK/CN,0,3.7,2,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+830230,83,"Other mountings, fittings and similar articles suitable for motor vehicles",US/EU/UK/CN,2,2.7,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+830241,83,"Other mountings, fittings and similar articles",US/EU/UK/CN,3.9,2.7,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+830250,83,"Hat-racks, hat-pegs, brackets and similar fixtures",US/EU/UK/CN,0,2.7,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+830300,83,"Armoured or reinforced safes, strongboxes and doors and safe deposit lockers for strongrooms",US/EU/UK/CN,3.8,2.7,2,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+830630,83,"Photograph, picture or similar frames; mirrors",US/EU/UK/CN,2.7,2.7,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+840120,84,"Machinery and apparatus for isotopic separation, and parts thereof",US/EU/UK/CN,2.6,3.7,0,1,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+8418,84,"Refrigerators, freezers and other refrigerating or freezing equipment, electric or other; heat pumps, other than the air conditioning machines of heading 8415; parts thereof:",US,0,,,,ad_valorem,,,,,,,,0,,,,2026-08-03
+841840,84,"Freezers of the upright type, not exceeding 900 litres capacity",US/EU/UK/CN,0,2.2,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+842430,84,Steam or sandblasting machines and similar jet projecting machines,US/EU/UK/CN,0,1.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+845970,84,Other threading or tapping machines,US/EU/UK/CN,4.2,2.7,0,9,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+847130,84,"Portable automatic data-processing machines, weighing not more than 10 kg, consisting of at least a central processing unit, a keyboard and a display",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+847521,84,Machines for manufacturing or hot working glass or glassware,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+850110,85,"Motors of an output not exceeding 37,5 W",US/EU/UK/CN,4.4,2.7,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+8504,85,"Electrical transformers, static converters (for example, rectifiers) and inductors; parts thereof:",US,0,,,,ad_valorem,,,,,,,,0,,,,2026-08-03
+850520,85,"Electromagnetic couplings, clutches and brakes",US/EU/UK/CN,3.1,2.2,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+851671,85,Other electrothermic appliances,US/EU/UK/CN,3.7,2.7,0,7,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+851762,85,"Machines for the reception, conversion and transmission or regeneration of voice, images or other data, including switching and routing apparatus",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+852871,85,"Reception apparatus for television, whether or not incorporating radio-broadcast receivers or sound or video recording or reproducing apparatus",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+853951,85,Light-emitting diode (LED) light sources,US/EU/UK/CN,0,2.7,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+860711,86,"Bogies, bissel-bogies, axles and wheels, and parts thereof",US/EU/UK/CN,0,1.7,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+860730,86,"Hooks and other coupling devices, buffers, and parts thereof",US/EU/UK/CN,3.6,1.7,0,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+860900,86,"Containers with an anti-radiation lead covering, for the transport of radioactive materials",US/EU/UK/CN,0,0,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+870121,87,Road tractors for semi-trailers,US/EU/UK/CN,4,16,10,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+870321,87,"Other vehicles, with only spark-ignition internal combustion piston engine",US/EU/UK/CN,2.5,10,10,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+870380,87,"Other vehicles, with only electric motor for propulsion",US/EU/UK/CN,2.5,10,10,15,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+870410,87,Dumpers designed for off-highway use,US/EU/UK/CN,0,0,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+870600,87,"Chassis for tractors of heading 8701; chassis for motor vehicles of heading 8702, 8703 or 8704, with either a compression-ignition internal combustion piston engine (diesel or semi-diesel) of a cylinder capacity exceeding 2 500 cm<sup>3</sup> or with a spark-ignition internal combustion piston engine of a cylinder capacity exceeding 2 800 cm<sup>3</sup>",US/EU/UK/CN,4,19,4,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+871130,87,With internal combustion piston engine of a cylinder capacity exceeding 250 cm<sup>3</sup> but not exceeding 500 cm<sup>3</sup>,US/EU/UK/CN,0,6,6,45,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+880100,88,Balloons and dirigibles; gliders and hang gliders,US/EU/UK/CN,0,3.7,2,3,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+880230,88,"Aeroplanes and other aircraft, of an unladen weight exceeding 2 000 kg but not exceeding 15 000 kg",US/EU/UK/CN,0,2.7,0,4,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+880510,88,Aircraft launching gear and parts thereof; deck-arrestor or similar gear and parts thereof,US/EU/UK/CN,0,2.7,0,1.5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+880621,88,"Other, for remote-controlled flight only",US/EU/UK/CN,0,7.5,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+880624,88,With maximum take-off weight more than 25 kg but not more than 150 kg,US/EU/UK/CN,0,7.5,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+890110,89,"Cruise ships, excursion boats and similar vessels principally designed for the transport of persons; ferry-boats of all kinds",US/EU/UK/CN,0,1.7,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+890190,89,Other vessels for the transport of goods and other vessels for the transport of both persons and goods,US/EU/UK/CN,0,1.7,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+890312,89,Not designed for use with a motor and unladen (net) weight not exceeding 100 kg,US/EU/UK/CN,2.4,2.7,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+890322,89,"Of a length exceeding 7,5 m but not exceeding 24 m",US/EU/UK/CN,1.5,1.7,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+890332,89,"Of a length exceeding 7,5 m but not exceeding 24 m",US/EU/UK/CN,1.5,1.7,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+900110,90,"Optical fibres, optical fibre bundles and cables",US/EU/UK/CN,6.7,2.9,2,5,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+901310,90,"Telescopic sights for fitting to arms; periscopes; telescopes designed to form parts of machines, appliances, instruments or apparatus of this chapter or Section XVI",US/EU/UK/CN,14.9,0,0,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+901720,90,"Other drawing, marking-out or mathematical calculating instruments",US/EU/UK/CN,4.6,2.7,2,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+902710,90,Gas or smoke analysis apparatus,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+903020,90,Oscilloscopes and oscillographs,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+910700,91,"Time switches, with clock or watch movement, used in automatic systems, intended in certain types of aircraft",US/EU/UK/CN,4,4.7,4,8,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+910812,91,With opto-electronic display only,US/EU/UK/CN,3.1,4.7,0,16,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+911012,91,"Incomplete movements, assembled",US/EU/UK/CN,9,3.7,0,16,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+911310,91,Of precious metal or of metal clad with precious metal,US/EU/UK/CN,4.5,3.7,2,20,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+911320,91,"Of base metal, whether or not gold- or silver-plated",US/EU/UK/CN,11.2,6,0,14,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+920710,92,"Keyboard instruments, other than accordions",US/EU/UK/CN,5.4,3.2,2,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+920992,92,Parts and accessories for the musical instruments of heading 9202,US/EU/UK/CN,3.9,2.7,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+920994,92,Parts and accessories for the musical instruments of heading 9207,US/EU/UK/CN,5.7,2.7,0,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+930520,93,Of shotguns or rifles of heading 9303,US/EU/UK/CN,3.5,2.7,2,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+930621,93,Shotgun cartridges and parts thereof; air gun pellets,US/EU/UK/CN,0,2.7,0,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+930630,93,Other cartridges and parts thereof,US/EU/UK/CN,0,2.7,2,13,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940110,94,Seats of a kind used for aircraft,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940141,94,"Seats other than garden seats or camping equipment, convertible into beds",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940310,94,Metal furniture of a kind used in offices,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940350,94,Wooden furniture of a kind used in the bedroom,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940360,94,Other wooden furniture,US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+940521,94,"Electric table, desk, bedside or floor-standing luminaires",US/EU/UK/CN,3.7,4.7,2,10,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+950300,95,"Tricycles, scooters, pedal cars and similar wheeled toys; dolls' carriages",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+950430,95,"Other games, operated by coins, banknotes, bank cards, tokens or by any other means of payment, other than automatic bowling alley equipment",US/EU/UK/CN,0,0,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+950510,95,Articles for Christmas festivities,US/EU/UK/CN,0,2.7,0,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+950621,95,"Water-skis, surf-bοards, sailboards and other water-sport equipment",US/EU/UK/CN,0,2.7,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+950640,95,Articles and equipment for table tennis,US/EU/UK/CN,5.1,2.7,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+960110,96,Worked ivory and articles of ivory,US/EU/UK/CN,0,2.7,2,20,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+960330,96,"Artists' brushes, writing brushes and similar brushes for the application of cosmetics",US/EU/UK/CN,2.6,3.7,2,0,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+960610,96,"Press-fasteners, snap-fasteners and press studs and parts therefor",US/EU/UK/CN,3.5,3.7,0,6,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+960820,96,Felt-tipped and other porous-tipped pens and markers,US/EU/UK/CN,4,3.7,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+960860,96,"Refills for ballpoint pens, comprising the ball point and ink-reservoir",US/EU/UK/CN,2.7,2.7,0,12,ad_valorem,ad_valorem,ad_valorem,ad_valorem,,,,,0,20,20,13,2026-08-03
+
