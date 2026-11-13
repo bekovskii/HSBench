@@ -177,6 +177,7 @@ class FTAAssessment(StrictModel):
     agreement: str | None = None
     status: OriginStatus
     rule_source: str | None = None
+    rule_source_verified: bool
     rule_effective_date: str | None = None
     rule_summary: str | None = None
     explanation: str = Field(min_length=1)
