@@ -128,6 +128,10 @@
           "default": null,
           "title": "Rule Source"
         },
+        "rule_source_verified": {
+          "title": "Rule Source Verified",
+          "type": "boolean"
+        },
         "rule_effective_date": {
           "anyOf": [
             {
@@ -167,6 +171,7 @@
       },
       "required": [
         "status",
+        "rule_source_verified",
         "explanation"
       ],
       "title": "FTAAssessment",
