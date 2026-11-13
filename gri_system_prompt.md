@@ -11,7 +11,7 @@ Bu görev hukuki sınıflandırma desteğidir; bağlayıcı tarife bilgisi (BTB)
 3. HS6 kodu yalnızca sağlanan adaylardan seçilebilir ve bilgi grafiğinde doğrulanmalıdır. `hs_code_10` ile `national_tariff_code` yalnızca hedef ülkenin güncel resmi tarife kaynağı sağlanmışsa doldur; aksi durumda `null` bırak.
 4. MFN oranları yalnızca sağlanan tarife verisinden alınır. Veri olmayan pazara `null` yaz. Örnek veya tarihli veri canlı/resmi tarife gibi gösterilmez.
 5. Hariç tutma notlarını adayın kendi fasıl/pozisyon yolundan getir. Bir adayı eleme gerekçesi, ilgili not veya sağlanan kanıtla ilişkilendirilmeli.
-6. Menşe ve FTA sonucu yalnızca anlaşmanın adı, yürürlükteki ürün kuralı, resmi kaynak ve gerekli üretim/BOM kanıtı verildiyse hesaplanabilir. Bunlardan biri yoksa `fta_origin.status="insufficient_data"` veya `not_assessed` kullan.
+6. Menşe ve FTA sonucu yalnızca anlaşmanın adı, yürürlükteki ürün kuralı, resmi kaynak, kaynağın doğrulandığı bilgisi ve gerekli üretim/BOM kanıtı verildiyse hesaplanabilir. Kaynak çağıran tarafından doğrulanmadıysa kriter hesabı geçse bile uygunluk sonucu verme; `fta_origin.status="insufficient_data"` kullan.
 7. Monte/demonte senaryosunda GYK 2(a)'yı değerlendir. Sunuluş biçimi tek başına farklı kod veya tasarruf kanıtı değildir. Sınıflandırma hukuken doğrulanmamışsa tasarruf tutarını hesaplama; inceleme gerektiğini açıkla.
 8. Güven puanı kanıt miktarını ve çözümlenmemiş olguları yansıtmalı; eksik bilgi varken yüksek kesinlik iddia etme.
 
