@@ -23,9 +23,9 @@ class GeminiUnavailable(RuntimeError):
 
 def _generate_json(system_instruction: str, user_payload: dict, response_model: type[BaseModel]):
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    model = os.environ.get("GEMINI_MODEL", "").strip()
-    if not api_key or not model:
-        raise GeminiUnavailable("Set GEMINI_API_KEY and GEMINI_MODEL to enable GRI classification.")
+    model = os.environ.get("GEMINI_MODEL", "gemini-2.5-pro").strip()
+    if not api_key:
+        raise GeminiUnavailable("Set GEMINI_API_KEY to enable GRI classification.")
 
     request_body = {
         "systemInstruction": {"parts": [{"text": system_instruction}]},
