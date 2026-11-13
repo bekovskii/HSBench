@@ -77,6 +77,7 @@ class FTAAssessmentRequest(StrictModel):
     origin_country: str = Field(min_length=2)
     product_hs6: str = Field(pattern=r"^\d{6}$")
     rule_source: str = Field(min_length=1)
+    rule_source_verified: bool = False
     rule_effective_date: date
     rule_summary: str = Field(min_length=1)
     criteria_logic: Literal["all", "any"] = "all"
@@ -107,6 +108,7 @@ class FTAAssessmentResult(StrictModel):
     product_hs6: str
     status: Literal["qualified", "not_qualified", "insufficient_data"]
     rule_source: str
+    rule_source_verified: bool
     rule_effective_date: date
     rule_summary: str
     criteria_results: list[FTACriterionResult]
