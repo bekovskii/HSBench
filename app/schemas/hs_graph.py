@@ -12,6 +12,8 @@ PARENT_EDGE = "PARENT_OF_EDGE"
 EXCLUDES_EDGE = "EXCLUDES_EDGE"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPOSITORY_ROOT / "data" / "graph"
+if not DATA_DIR.exists():
+    DATA_DIR = REPOSITORY_ROOT / "knowledge"
 
 
 class HSNode(BaseModel):
@@ -133,6 +135,52 @@ class HSGraph:
             for entry in data.get("exclusions", [])
         ]
 
+    def classification_context(self, code: str) -> dict:
+        started = perf_counter()
+        if len(code) != 6 or not code.isdigit():
+            raise ValueError("HS code must contain exactly 6 digits")
+        item = self.node(code)
+        if item is None or item.level != "subheading":
+            raise ValueError(f"HS6 code not found: {code}")
+
+        lineage: dict[str, HSNode] = {code: item}
+        pending = [code]
+        while pending:
+            current = pending.pop()
+            for parent in self.parents(current):
+                if parent.code not in lineage:
+                    lineage[parent.code] = parent
+                    pending.append(parent.code)
+
+        chapter = next((node for node in lineage.values() if node.level == "chapter"), None)
+        heading = next((node for node in lineage.values() if node.level == "heading"), None)
+        if chapter is None or heading is None:
+            raise ValueError(f"Incomplete HS hierarchy for: {code}")
+
+        path_codes = [node.code for node in lineage.values() if node.level in {"section", "chapter", "heading", "subheading"}]
+        exclusions = [
+            {
+                "source_code": source,
+                "target_code": rule.target,
+                "resolved_target": self._resolve_target(rule.target),
+                "condition": rule.condition,
+            }
+            for source in path_codes
+            for rule in self.exclusions(source)
+        ]
+        query_ms = (perf_counter() - started) * 1000
+        return {
+            "hs6_code": code,
+            "chapter": {"code": chapter.code, "description": chapter.name, "detail": chapter.description},
+            "heading": {"code": heading.code, "description": heading.name, "detail": heading.description},
+            "path": path_codes,
+            "exclusions": exclusions,
+            "exclusion_count": len(exclusions),
+            "query_ms": round(query_ms, 3),
+            "within_50ms": query_ms < 50,
+            "source_language": "zh",
+        }
+
     def save(self, path: Path = REPOSITORY_ROOT / "graph.pkl") -> Path:
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("wb") as file:
@@ -162,6 +210,9 @@ if __name__ == "__main__":
     output = graph.save()
     loaded = HSGraph.load_pickle(output)
     assert loaded.has_edge("6类", graph._resolve_target("26"))
+    hs6 = graph.classification_context("850760")
+    assert hs6["chapter"]["code"] == "85" and hs6["heading"]["code"] == "8507"
+    assert hs6["within_50ms"]
     print(
         f"Saved {graph.graph.number_of_nodes():,} nodes / {graph.graph.number_of_edges():,} edges to {output}; "
         f"exclusion lookup {query_ms:.3f} ms; unresolved targets {ascii(sorted(graph.unresolved_targets))}."
