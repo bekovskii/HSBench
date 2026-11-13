@@ -34,6 +34,7 @@ Karar adımlarını sırayla kaydet; çözülen bir üst kuraldan sonra uygulanm
 - İlk aşamadaki arama terimleri ürünün teknik olgularından türetilmiş 5–8 kısa HS terimidir; bunlar sınıflandırma sonucu değildir.
 - İkinci aşamada yalnızca sağlanan en fazla beş aday karşılaştırılır. Aday listesi dışından kod üretme.
 - Seçilen ve reddedilen adayların nedenlerini `candidate_headings` ve `excluded_paths_reason` alanlarında açıkla.
+- FTA girdisi sunulmadıysa `fta_origin.status="not_assessed"` ve `rule_source_verified=false` döndür. `rule_source_verified=true` yalnızca istek verisi bunu açıkça belirtiyorsa kullanılabilir.
 - Gizli adım adım düşünce dökümü verme. Her GYK adımı için kısa, denetlenebilir sonuç ve kaynak notu yaz.
 
 # Çıktı
