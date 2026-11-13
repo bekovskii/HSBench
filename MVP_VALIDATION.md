@@ -27,7 +27,7 @@ $env:GEMINI_API_KEY = "<Google AI Studio API key>"
 $env:GEMINI_MODEL = "<enabled Gemini model id>"
 ```
 
-Sonra API sürecini yeniden başlatıp sayfadaki **GRI ile sınıflandır** düğmesini kullanın. Gemini ayarı yoksa `/api/classify` 503 döndürür; sahte sınıflandırma üretmez. FTA ve monte/demonte uç noktaları yalnızca kullanıcı tarafından sağlanan kural/kanıtlarla değerlendirme yapar.
+Sonra API sürecini yeniden başlatıp sayfadaki **GRI ile sınıflandır** düğmesini kullanın. Gemini ayarı yoksa `/api/classify` 503 döndürür; sahte sınıflandırma üretmez. FTA değerlendirmesinde `rule_source_verified=true` resmi kuralın çağıran tarafından kontrol edildiğini belirtir; bu işaret olmadan sonuç `insufficient_data` kalır.
 
 Başka bir API adresine yayınlarken Next.js derleme ortamında `FASTAPI_URL` değişkenini API'nin tam adresine ayarlayın. Bu prototip e-posta adreslerini yerel SQLite dosyasına kaydeder; herkese açık kullanım öncesi kalıcı veritabanı ve gizlilik metni yapılandırılmalıdır.
 
