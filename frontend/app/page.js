@@ -6,6 +6,11 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [preview, setPreview] = useState(null);
   const [previewError, setPreviewError] = useState("");
+  const [classification, setClassification] = useState(null);
+  const [classificationError, setClassificationError] = useState("");
+  const [materials, setMaterials] = useState("");
+  const [primaryFunction, setPrimaryFunction] = useState("");
+  const [packaging, setPackaging] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [accessStatus, setAccessStatus] = useState("");
@@ -22,6 +27,25 @@ export default function Home() {
       if (!response.ok) throw new Error(data.detail || "Önizleme alınamadı.");
       setPreview(data);
     } catch (error) { setPreviewError(error.message); }
+    finally { setBusy(false); }
+  }
+
+  async function classifyProduct() {
+    setBusy(true); setClassificationError(""); setClassification(null);
+    try {
+      const response = await fetch("/api/classify", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_description: query,
+          material_composition: materials.split(/[;,\n]/).map(value => value.trim()).filter(Boolean),
+          primary_function: primaryFunction || null,
+          form_and_packaging: packaging || null,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || "GRI analizi tamamlanamadı.");
+      setClassification(data);
+    } catch (error) { setClassificationError(error.message); }
     finally { setBusy(false); }
   }
 
@@ -64,8 +88,32 @@ export default function Home() {
               <p className="hint">Bağlantıda yalnızca URL metni kullanılır; sayfa sunucudan ziyaret edilmez.</p>
               <button className="primary" disabled={busy}>{busy ? "Kontrol ediliyor…" : "Önizleme iste"} <span aria-hidden="true">→</span></button>
             </form>
+            <div className="gri-inputs">
+              <label htmlFor="materials">Malzemeler ve oranları (biliniyorsa)</label>
+              <input id="materials" value={materials} onChange={e => setMaterials(e.target.value)} placeholder="Örn. çelik %70; plastik %30" />
+              <label htmlFor="function">Temel işlev / kullanım amacı</label>
+              <input id="function" value={primaryFunction} onChange={e => setPrimaryFunction(e.target.value)} placeholder="Ürün ne yapar?" />
+              <label htmlFor="packaging">İthalattaki sunuluş şekli</label>
+              <input id="packaging" value={packaging} onChange={e => setPackaging(e.target.value)} placeholder="Örn. monte, demonte, perakende set" />
+              <button type="button" className="primary" disabled={busy || query.trim().length < 3} onClick={classifyProduct}>{busy ? "GRI inceleniyor…" : "GRI ile sınıflandır"}</button>
+            </div>
             {previewError && <p className="error" role="alert">{previewError}</p>}
             {preview && <div className="results" aria-live="polite"><p className="notice">{preview.notice}</p>{preview.candidates.length ? preview.candidates.map(item => <article className="candidate" key={item.code}><strong>HS {item.code}</strong><p>{item.description}</p><div className="rates">{Object.entries(item.rates).map(([country, rate]) => <span key={country}>{country}: {rate === null ? "veri yok" : `${rate}%`}</span>)}</div><small>Örnek veri doğrulama tarihi: {item.verified}</small></article>) : <p className="hint">Örnek tarifede eşleşme bulunamadı. İngilizce ürün adını deneyin.</p>}</div>}
+            {classificationError && <p className="error" role="alert">{classificationError}</p>}
+            {classification && <section className="results" aria-live="polite">
+              <p className="notice">Durum: {classification.classification_status} · Güven: {classification.final_classification.confidence_score}</p>
+              {classification.hs_code_6 ? <h3>HS6: {classification.hs_code_6}{classification.hs_code_10 ? ` · Ulusal kod: ${classification.hs_code_10}` : " · Ulusal kod resmi kaynakla doğrulanmadı"}</h3> : <p className="hint">Henüz desteklenen nihai HS6 kodu yok.</p>}
+              {classification.missing_information.needs_more_info && <><h3>Gerekli ek bilgiler</h3><ul>{classification.missing_information.clarification_questions.map(question => <li key={question}>{question}</li>)}</ul></>}
+              <p className="hint">{classification.product_analysis.normalized_description}</p>
+              {classification.candidate_headings.length > 0 && <><h3>Aday pozisyonlar</h3><ul>{classification.candidate_headings.map(item => <li key={`${item.code}-${item.status}`}><b>{item.code}</b> · {item.status} · {item.elimination_or_selection_reason}</li>)}</ul></>}
+              <h3>GYK değerlendirmesi</h3><ol>{classification.gri_decision_tree.map(step => <li key={step.rule}><b>{step.rule}</b> · {step.reasoning}</li>)}</ol>
+              <p className="hint">{classification.final_classification.legal_justification}</p>
+              {classification.excluded_paths_reason.length > 0 && <><h3>Hariç tutma / eleme gerekçeleri</h3><ul>{classification.excluded_paths_reason.map((item, index) => <li key={`${item.code}-${index}`}><b>{item.code}</b> · {item.reason}</li>)}</ul></>}
+              <h3>MFN oranları</h3><div className="rates">{["US", "EU", "UK", "CN"].map(market => <span key={market}>{market}: {classification.mfn_rates[market] === null ? "veri yok" : `${classification.mfn_rates[market]}%`}</span>)}</div>
+              <p className="hint">Tarife kaynağı: {classification.mfn_rates.source}; doğrulama tarihi: {classification.mfn_rates.verified_on || "yok"}</p>
+              <h3>Monte / demonte</h3><p className="hint">{classification.tariff_engineering_advice.explanation}{classification.tariff_engineering_advice.potential_savings !== null ? ` Örnek hesap: ${classification.tariff_engineering_advice.potential_savings} ${classification.tariff_engineering_advice.currency}.` : ""}</p>
+              <h3>FTA menşe</h3><p className="hint">{classification.fta_origin.status} · {classification.fta_origin.explanation}</p>
+            </section>}
             <form className="access" onSubmit={joinEarlyAccess}>
               <label htmlFor="email">Ürün hazır olduğunda haber verelim</label>
               <div className="emailrow"><input id="email" type="email" maxLength={254} value={email} onChange={e => setEmail(e.target.value)} placeholder="e-posta@örnek.com" required /><button type="submit">Erken erişim</button></div>
@@ -92,7 +140,7 @@ export default function Home() {
 
         <section className="steps" aria-label="Nasıl çalışır"><article><b>01 · Ürünü tanımlayın</b><p>Ürün bağlantısı veya malzeme ve kullanım açıklaması girin.</p></article><article><b>02 · Gerekçeyi inceleyin</b><p>HS6 sorgusunda fasıl, pozisyon ve ilgili istisna notlarını görün.</p></article><article><b>03 · Uzmanla doğrulayın</b><p>Kaynak graf Çincedir; gerçek ithalat kararını güncel ulusal tarife ve müşavirle doğrulayın.</p></article></section>
       </main>
-      <footer>Ürün URL’leri sunucuda açılmaz. Ürün önizlemesi örnek tarifede İngilizce metin eşleşmesidir. HS grafiği resmi hukuki karar veya Türkiye GTİP 10/12 hane doğrulaması değildir.</footer>
+      <footer>Ürün URL’leri sunucuda açılmaz. GRI analizi Google AI Studio anahtarı ve modeli gerektirir; sonuçlar öneridir. MFN tablosu örnek veridir, 10/12 haneli ulusal kodlar canlı resmi kaynakla doğrulanmıyor.</footer>
     </>
   );
 }
