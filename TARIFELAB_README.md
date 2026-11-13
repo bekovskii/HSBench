@@ -12,7 +12,7 @@
 - `GET /api/contracts/classification-response`: aynı Pydantic modelinden üretilen JSON Schema.
 - `GET /api/hs/{code}`: fasıl, pozisyon ve bilgi grafiğindeki hariç tutma kuralları.
 - `POST /api/tariff-engineering/compare`: monte/demonte oran karşılaştırması ve GRI 2(a) inceleme kapısı.
-- `POST /api/fta/evaluate`: kullanıcı tarafından sağlanan, kaynak ve yürürlük tarihi belirtilmiş FTA şartlarını BOM/menşe kanıtıyla değerlendirir.
+- `POST /api/fta/evaluate`: çağıranın resmi kaynağını doğruladığını açıkça belirtmesi halinde, yürürlük tarihi verilen FTA şartlarını BOM/menşe kanıtıyla değerlendirir. Kaynak doğrulama işareti yoksa sonuç `insufficient_data` kalır.
 
 ## Çalıştırma
 
