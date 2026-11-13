@@ -184,8 +184,7 @@ def classify_product(payload: ProductClassificationRequest):
         terms = generate_search_terms(facts).terms
         rows, language, source = search_candidates(query, terms, limit=5)
     except GeminiUnavailable as exc:
-        status = 503 if "Set GEMINI_API_KEY" in str(exc) else 502
-        raise HTTPException(status_code=status, detail=str(exc)) from exc
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
     except (ImportError, RuntimeError, FileNotFoundError) as exc:
         raise HTTPException(status_code=503, detail=f"Arama katmanı hazır değil: {exc}") from exc
 
@@ -222,8 +221,10 @@ def classify_product(payload: ProductClassificationRequest):
     try:
         result = classify_with_gri({"product_facts": facts, "search_terms": terms, "candidates": candidates})
     except GeminiUnavailable as exc:
-        status = 503 if "Set GEMINI_API_KEY" in str(exc) else 502
-        raise HTTPException(status_code=status, detail=str(exc)) from exc
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+    if result.classification_status == ClassificationStatus.NO_SUPPORTED_CANDIDATE:
+        return _no_candidate_response(payload, query, terms, language, source)
 
     allowed_codes = {candidate["code"] for candidate in candidates}
     if result.hs_code_6 and result.hs_code_6 not in allowed_codes:
@@ -248,6 +249,9 @@ def classify_product(payload: ProductClassificationRequest):
 
     values = result.model_dump()
     values["hs_code_10"] = None
+    values["final_classification"]["hs_chapter"] = result.hs_code_6[:2]
+    values["final_classification"]["hs_heading"] = result.hs_code_6[:4]
+    values["final_classification"]["hs_subheading"] = result.hs_code_6
     values["product_analysis"]["material_composition"] = payload.material_composition
     values["product_analysis"]["primary_function"] = payload.primary_function or "Not provided"
     values["product_analysis"]["form_and_packaging"] = payload.form_and_packaging
@@ -321,4 +325,3 @@ def early_access(payload: EarlyAccessRequest):
         db.execute("CREATE TABLE IF NOT EXISTS early_access (email TEXT PRIMARY KEY, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)")
         db.execute("INSERT OR IGNORE INTO early_access(email) VALUES (?)", (email,))
     return {"message": "Erken erişim listenize eklendiniz."}
-

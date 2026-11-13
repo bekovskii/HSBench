@@ -4,7 +4,7 @@
 
 `app/schemas/classification.py` bütün sınıflandırma yanıtlarının Pydantic v2 modelidir. JSON Schema çıktısı `schemas/classification_response.schema.json` dosyasına `.venv\Scripts\python -m app.schemas.classification` komutuyla üretilir. Eski `ClassificationResponse.txt` taslağı bu sözleşmeye dönüştürülmüştür; uygulama ve prompt artık generated şemayı kullanır.
 
-`gri_system_prompt.md`, `/api/classify` içinde Google AI Studio çağrısının sistem promptudur. İstekler önce 5–8 HS terimine genişletilir, en fazla beş aday aranır ve model yanıtı Pydantic sözleşmesiyle doğrulanır. HS6 kodu aday listesi ve bilgi grafiğiyle tekrar kontrol edilir. Model varsayılanı görseldeki `gemini-2.5-pro` değeridir; `GEMINI_MODEL` ile değiştirilebilir. Google yeni projelerde daha güncel modelleri önerdiğinden 2.5 Pro erişimini API anahtarınızla doğrulayın. Sınıflandırma için `GEMINI_API_KEY` gerekir.
+`gri_system_prompt.md`, `/api/classify` içindeki sistem promptudur. İstekler önce 5–8 HS terimine genişletilir, en fazla beş aday aranır ve model yanıtı Pydantic sözleşmesiyle doğrulanır. HS6 kodu aday listesi ve bilgi grafiğiyle tekrar kontrol edilir. Varsayılan sağlayıcı bu bilgisayardaki Ollama ve `qwen3:4b-instruct-2507-q4_K_M` modelidir; Gemini anahtarı gerekmez. Gemini kullanmak isterseniz `LLM_PROVIDER=gemini`, `GEMINI_API_KEY` ve isteğe bağlı `GEMINI_MODEL` ayarlayın. Görseldeki `gemini-2.5-pro` değeri varsayılandır; Google bu modele erişimi sınırlayıp yeni projeler için güncel modelleri öneriyor.
 
 ## Uç noktalar
 
@@ -23,6 +23,8 @@ py -3.13 -m venv .venv
 .venv\Scripts\python -m pip install -e .
 .venv\Scripts\python -m uvicorn app.main:app --reload
 ```
+
+Yerel sınıflandırma için Ollama uygulaması açık olmalı. Servis başlamadıysa `ollama serve` komutunu çalıştırın. Model adı `OLLAMA_MODEL` ile değiştirilebilir.
 
 Next.js arayüzü ayrı terminalde:
 

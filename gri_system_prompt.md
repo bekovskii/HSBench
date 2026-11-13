@@ -34,12 +34,12 @@ Karar adımlarını sırayla kaydet; çözülen bir üst kuraldan sonra uygulanm
 - İlk aşamadaki arama terimleri ürünün teknik olgularından türetilmiş 5–8 kısa HS terimidir; bunlar sınıflandırma sonucu değildir.
 - İkinci aşamada yalnızca sağlanan en fazla beş aday karşılaştırılır. Aday listesi dışından kod üretme.
 - Seçilen ve reddedilen adayların nedenlerini `candidate_headings` ve `excluded_paths_reason` alanlarında açıkla.
+- Adaylara ait hariç tutma notları `exclusion_notes` içinde `source_code` ile verilebilir; notu yalnızca adayın kendi fasıl/pozisyon yolundaki kaynak kodla eşleştiğinde uygula.
 - FTA girdisi sunulmadıysa `fta_origin.status="not_assessed"` ve `rule_source_verified=false` döndür. `rule_source_verified=true` yalnızca istek verisi bunu açıkça belirtiyorsa kullanılabilir.
 - Gizli adım adım düşünce dökümü verme. Her GYK adımı için kısa, denetlenebilir sonuç ve kaynak notu yaz.
 
 # Çıktı
 
-Yalnızca `schemas/classification_response.schema.json` ile uyumlu tek JSON nesnesi döndür. Markdown çiti, önsöz veya şemada bulunmayan alan ekleme. Şemadaki her zorunlu alanı üret; bilinmeyen oran/kod gibi değerleri `null`, çözülememiş final kodlarını boş metin olarak kullan. Kodları noktasız rakam metni olarak döndür. Karar ağacı ve özetindeki uygulanmış GYK kuralları birbiriyle aynı olmalıdır.
+Yalnızca model çağrısında sağlanan JSON Schema ile uyumlu tek JSON nesnesi döndür. Markdown çiti, önsöz veya o şemada bulunmayan alan ekleme. Şemadaki her zorunlu alanı üret; bilinmeyen oran/kod gibi değerleri `null`, çözülememiş final kodlarını boş metin olarak kullan. Kodları noktasız rakam metni olarak döndür. Karar ağacı ve özetindeki uygulanmış GYK kuralları birbiriyle aynı olmalıdır. API, sınıflandırma yanıt şemasını modele verilen ürün/tarife verileriyle birleştirip son Pydantic doğrulamasından geçirir.
 
 Resmi GYK metni: [Dünya Gümrük Örgütü — General Rules for the Interpretation of the Harmonized System](https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-interpretation-general-rules/general_rules_interpret_hs.pdf?la=pt-pt).
-
