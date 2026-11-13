@@ -633,6 +633,121 @@
       ],
       "title": "TariffEngineeringAdvice",
       "type": "object"
+    },
+    "USITCTariffData": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/USITCTariffStatus"
+        },
+        "hs6_code": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{6}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hs6 Code"
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/$defs/USITCTariffLine"
+          },
+          "title": "Lines",
+          "type": "array"
+        },
+        "retrieved_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retrieved At"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Url"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "USITCTariffData",
+      "type": "object"
+    },
+    "USITCTariffLine": {
+      "additionalProperties": false,
+      "properties": {
+        "hts_code": {
+          "pattern": "^(?:\\d{8}|\\d{10})$",
+          "title": "Hts Code",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "general_rate": {
+          "title": "General Rate",
+          "type": "string"
+        },
+        "special_rate": {
+          "title": "Special Rate",
+          "type": "string"
+        },
+        "column_2_rate": {
+          "title": "Column 2 Rate",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hts_code",
+        "description",
+        "general_rate",
+        "special_rate",
+        "column_2_rate"
+      ],
+      "title": "USITCTariffLine",
+      "type": "object"
+    },
+    "USITCTariffStatus": {
+      "enum": [
+        "not_assessed",
+        "available",
+        "no_lines",
+        "source_unavailable"
+      ],
+      "title": "USITCTariffStatus",
+      "type": "string"
     }
   },
   "additionalProperties": false,
@@ -700,7 +815,11 @@
     },
     "mfn_rates": {
       "$ref": "#/$defs/MarketRates",
-      "description": "US, EU, UK ve CN için mevcut MFN örnek oranları ve kaynak tarihi."
+      "description": "ABD'de USITC genel oranı tekil yüzdeyse; diğer pazarlarda mevcut örnek oranlar."
+    },
+    "us_tariff_data": {
+      "$ref": "#/$defs/USITCTariffData",
+      "description": "USITC'den isteğin yapıldığı anda alınan ABD HTS oran satırları."
     },
     "fta_origin": {
       "$ref": "#/$defs/FTAAssessment",
@@ -723,6 +842,7 @@
     "excluded_paths_reason",
     "tariff_engineering_advice",
     "mfn_rates",
+    "us_tariff_data",
     "fta_origin",
     "search_metadata"
   ],
@@ -731,4 +851,3 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tarifelab.local/schemas/classification-response.schema.json"
 }
-

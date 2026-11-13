@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Sayfa `http://localhost:3000` adresindedir. HS6 örneği `850760`; API uç noktası `/api/hs/850760`. API `graph.pkl` dosyasını açılışta yükler. Kaynak graf değiştiyse Pydantic ile doğrulanmış grafı üretip 5.615 HS6 sorgusunun 50 ms altı kontrolünü çalıştırmak için `.venv\Scripts\python -m app.schemas.hs_graph` komutunu kullanın.
+Sayfa `http://localhost:3000` adresindedir. HS6 örneği `850760`; API uç noktaları `/api/hs/850760` ve `/api/us-tariff/850760`. API `graph.pkl` dosyasını açılışta yükler. Kaynak graf değiştiyse Pydantic ile doğrulanmış grafı üretip 5.615 HS6 sorgusunun 50 ms altı kontrolünü çalıştırmak için `.venv\Scripts\python -m app.schemas.hs_graph` komutunu kullanın.
 
 GRI sınıflandırması varsayılan olarak bu bilgisayardaki Ollama modelini kullanır; Google API anahtarı gerekmez. Ollama açık değilse ayrı terminalde `ollama serve` komutunu çalıştırın. Model adı `OLLAMA_MODEL` ile değiştirilebilir.
 
@@ -31,6 +31,6 @@ $env:GEMINI_API_KEY = "<Google AI Studio API key>"
 $env:GEMINI_MODEL = "gemini-2.5-pro"
 ```
 
-API sürecini yeniden başlatıp sayfadaki **GRI ile sınıflandır** düğmesini kullanın. Seçilen model kapalıysa veya Ollama çalışmıyorsa `/api/classify` 503 döndürür; sahte sınıflandırma üretmez. Gemini için Google yeni projelerde güncel modelleri öneriyor. FTA değerlendirmesinde `rule_source_verified=true` resmi kuralın çağıran tarafından kontrol edildiğini belirtir; bu işaret olmadan sonuç `insufficient_data` kalır.
+API sürecini yeniden başlatıp sayfadaki **GRI ile sınıflandır** düğmesini kullanın. Seçilen model kapalıysa `/api/classify` 503 döndürür; sahte sınıflandırma üretmez. ABD tarife satırları USITC'den istek anında alınır; ek Chapter 99 vergileri dahil değildir. AB/İngiltere/Çin örnek oranları canlı değildir. FTA değerlendirmesinde `rule_source_verified=true` resmi kuralın çağıran tarafından kontrol edildiğini belirtir; bu işaret olmadan sonuç `insufficient_data` kalır.
 
 Başka bir API adresine yayınlarken Next.js derleme ortamında `FASTAPI_URL` değişkenini API'nin tam adresine ayarlayın. Bu prototip e-posta adreslerini yerel SQLite dosyasına kaydeder; herkese açık kullanım öncesi kalıcı veritabanı ve gizlilik metni yapılandırılmalıdır.

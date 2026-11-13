@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import date
+from datetime import date, datetime
 from enum import StrEnum
 from pathlib import Path
 from typing import Self
@@ -157,6 +157,30 @@ class MarketRates(StrictModel):
         return value
 
 
+class USITCTariffStatus(StrEnum):
+    NOT_ASSESSED = "not_assessed"
+    AVAILABLE = "available"
+    NO_LINES = "no_lines"
+    SOURCE_UNAVAILABLE = "source_unavailable"
+
+
+class USITCTariffLine(StrictModel):
+    hts_code: str = Field(pattern=r"^(?:\d{8}|\d{10})$")
+    description: str
+    general_rate: str
+    special_rate: str
+    column_2_rate: str
+
+
+class USITCTariffData(StrictModel):
+    status: USITCTariffStatus
+    hs6_code: str | None = Field(default=None, pattern=r"^\d{6}$")
+    lines: list[USITCTariffLine] = Field(default_factory=list)
+    retrieved_at: datetime | None = None
+    source_url: str | None = None
+    message: str | None = None
+
+
 class TariffEngineeringAdvice(StrictModel):
     status: str = Field(pattern="^(not_assessed|no_saving|review_required|potential_saving)$")
     scenario: str | None = None
@@ -216,7 +240,8 @@ class ClassificationResponse(StrictModel):
     missing_information: MissingInformation
     excluded_paths_reason: list[ExcludedPathReason] = Field(description="Graf yolundaki hariç tutmalar ve aday eleme gerekçeleri.")
     tariff_engineering_advice: TariffEngineeringAdvice = Field(description="Monte/demonte senaryosu; kanıt yoksa inceleme gerekli.")
-    mfn_rates: MarketRates = Field(description="US, EU, UK ve CN için mevcut MFN örnek oranları ve kaynak tarihi.")
+    mfn_rates: MarketRates = Field(description="ABD'de USITC genel oranı tekil yüzdeyse; diğer pazarlarda mevcut örnek oranlar.")
+    us_tariff_data: USITCTariffData = Field(description="USITC'den isteğin yapıldığı anda alınan ABD HTS oran satırları.")
     fta_origin: FTAAssessment = Field(description="Sağlanan anlaşma kuralı ve menşe kanıtına göre FTA değerlendirmesi.")
     search_metadata: SearchMetadata = Field(description="Dil algılama, arama terimleri ve aday kaynağı.")
 
@@ -289,4 +314,3 @@ if __name__ == "__main__":
         encoding="utf-8",
     )
     print(f"Wrote {output}")
-

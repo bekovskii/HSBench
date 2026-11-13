@@ -98,7 +98,7 @@ export default function Home() {
               <button type="button" className="primary" disabled={busy || query.trim().length < 3} onClick={classifyProduct}>{busy ? "GRI inceleniyor…" : "GRI ile sınıflandır"}</button>
             </div>
             {previewError && <p className="error" role="alert">{previewError}</p>}
-            {preview && <div className="results" aria-live="polite"><p className="notice">{preview.notice}</p>{preview.candidates.length ? preview.candidates.map(item => <article className="candidate" key={item.code}><strong>HS {item.code}</strong><p>{item.description}</p><div className="rates">{Object.entries(item.rates).map(([country, rate]) => <span key={country}>{country}: {rate === null ? "veri yok" : `${rate}%`}</span>)}</div><small>Örnek veri doğrulama tarihi: {item.verified}</small></article>) : <p className="hint">Örnek tarifede eşleşme bulunamadı. İngilizce ürün adını deneyin.</p>}</div>}
+            {preview && <div className="results" aria-live="polite"><p className="notice">{preview.notice}</p>{preview.candidates.length ? preview.candidates.map(item => <article className="candidate" key={item.code}><strong>HS {item.code}</strong><p>{item.description}</p><div className="rates">{["US", "EU", "UK", "CN"].map(country => <span key={country}>{country}: {item.rates[country] === null ? "veri yok" : `${item.rates[country]}%`}</span>)}</div><small>Diğer pazar örnek oranları doğrulama tarihi: {item.rates.verified_on || item.verified}</small>{item.us_tariff_data.status === "available" && <ul>{item.us_tariff_data.lines.map(line => <li key={line.hts_code}>US HTS {line.hts_code}: Genel {line.general_rate || "—"}; Özel {line.special_rate || "—"}; Sütun 2 {line.column_2_rate || "—"}</li>)}</ul>}</article>) : <p className="hint">Örnek tarifede eşleşme bulunamadı. İngilizce ürün adını deneyin.</p>}</div>}
             {classificationError && <p className="error" role="alert">{classificationError}</p>}
             {classification && <section className="results" aria-live="polite">
               <p className="notice">Durum: {classification.classification_status} · Güven: {classification.final_classification.confidence_score}</p>
@@ -111,6 +111,8 @@ export default function Home() {
               {classification.excluded_paths_reason.length > 0 && <><h3>Hariç tutma / eleme gerekçeleri</h3><ul>{classification.excluded_paths_reason.map((item, index) => <li key={`${item.code}-${index}`}><b>{item.code}</b> · {item.reason}</li>)}</ul></>}
               <h3>MFN oranları</h3><div className="rates">{["US", "EU", "UK", "CN"].map(market => <span key={market}>{market}: {classification.mfn_rates[market] === null ? "veri yok" : `${classification.mfn_rates[market]}%`}</span>)}</div>
               <p className="hint">Tarife kaynağı: {classification.mfn_rates.source}; doğrulama tarihi: {classification.mfn_rates.verified_on || "yok"}</p>
+              <h3>ABD resmi HTS oranları</h3>
+              {classification.us_tariff_data.status === "available" ? <><p className="hint">USITC’den alındı: {classification.us_tariff_data.retrieved_at}</p><ul>{classification.us_tariff_data.lines.map(line => <li key={line.hts_code}><b>HTS {line.hts_code}</b> · {line.description} · Genel: {line.general_rate || "—"} · Özel: {line.special_rate || "—"} · Sütun 2: {line.column_2_rate || "—"}</li>)}</ul></> : <p className="hint">{classification.us_tariff_data.message || "ABD HTS oranı alınmadı."}</p>}
               <h3>Monte / demonte</h3><p className="hint">{classification.tariff_engineering_advice.explanation}{classification.tariff_engineering_advice.potential_savings !== null ? ` Örnek hesap: ${classification.tariff_engineering_advice.potential_savings} ${classification.tariff_engineering_advice.currency}.` : ""}</p>
               <h3>FTA menşe</h3><p className="hint">{classification.fta_origin.status} · {classification.fta_origin.explanation}</p>
             </section>}
@@ -140,8 +142,7 @@ export default function Home() {
 
         <section className="steps" aria-label="Nasıl çalışır"><article><b>01 · Ürünü tanımlayın</b><p>Ürün bağlantısı veya malzeme ve kullanım açıklaması girin.</p></article><article><b>02 · Gerekçeyi inceleyin</b><p>HS6 sorgusunda fasıl, pozisyon ve ilgili istisna notlarını görün.</p></article><article><b>03 · Uzmanla doğrulayın</b><p>Kaynak graf Çincedir; gerçek ithalat kararını güncel ulusal tarife ve müşavirle doğrulayın.</p></article></section>
       </main>
-      <footer>Ürün URL’leri sunucuda açılmaz. GRI analizi Google AI Studio anahtarı ve modeli gerektirir; sonuçlar öneridir. MFN tablosu örnek veridir, 10/12 haneli ulusal kodlar canlı resmi kaynakla doğrulanmıyor.</footer>
+      <footer>Ürün URL’leri sunucuda açılmaz. GRI yerel Ollama modeliyle çalışır; Gemini isteğe bağlıdır. ABD oranları USITC’den sorgu anında alınır; AB, İngiltere ve Çin oranları örnek veridir. Sonuçlar gümrük idaresi kararı değildir.</footer>
     </>
   );
 }
-

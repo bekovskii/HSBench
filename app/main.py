@@ -19,12 +19,15 @@ from app.schemas.classification import (
     ProductAnalysis,
     SearchMetadata,
     TariffEngineeringAdvice,
+    USITCTariffData,
+    USITCTariffStatus,
     classification_json_schema,
 )
 from app.schemas.requests import ProductClassificationRequest
 from app.schemas.tariff import FTAAssessmentRequest, FTAAssessmentResult, TariffEngineeringRequest, TariffEngineeringResult
 from app.schemas.hs_graph import HSGraph
 from core.duty_lookup import lookup_hs6, mfn_rates, search
+from core.duty_lookup.usitc import fetch_usitc_tariffs
 from core.search.gemini import GeminiUnavailable, classify_with_gri, generate_search_terms
 from core.search.service import search_candidates
 from core.tariff_engine.engineering import compare_assembled_unassembled
@@ -59,13 +62,34 @@ def _query_text(value: str) -> str:
     return value.strip()
 
 
-def _rates_for(code: str) -> MarketRates:
+def _rates_for(code: str, us_tariff_data: USITCTariffData | None = None) -> MarketRates:
     row = lookup_hs6(code)
+    rates = mfn_rates(code)
+    rate_values = {_rate_percent(line.general_rate) for line in us_tariff_data.lines} if us_tariff_data else set()
+    rates["US"] = next(iter(rate_values)) if rate_values and None not in rate_values and len(rate_values) == 1 else None
     return MarketRates(
-        **mfn_rates(code),
-        source="hs-code-lookup sample dataset" if row else "not_available_in_sample",
+        **rates,
+        source="USITC HTS API (US); hs-code-lookup sample dataset (EU/UK/CN)" if row else "USITC HTS API (US); other markets unavailable",
         verified_on=row["last_verified"] if row else None,
     )
+
+
+def _rate_percent(value: str) -> float | None:
+    if value.casefold() == "free":
+        return 0.0
+    match = re.fullmatch(r"(\d+(?:\.\d+)?)\s*%", value)
+    return float(match.group(1)) if match else None
+
+
+def _us_tariff_data(code: str) -> USITCTariffData:
+    try:
+        return USITCTariffData.model_validate(fetch_usitc_tariffs(code))
+    except (ValueError, TypeError) as exc:
+        return USITCTariffData(
+            status=USITCTariffStatus.SOURCE_UNAVAILABLE,
+            hs6_code=code,
+            message=f"USITC HTS response could not be validated: {exc}",
+        )
 
 
 def _not_assessed_tariff_advice() -> TariffEngineeringAdvice:
@@ -144,6 +168,7 @@ def _no_candidate_response(payload: ProductClassificationRequest, query: str, te
         excluded_paths_reason=[],
         tariff_engineering_advice=_not_assessed_tariff_advice(),
         mfn_rates=MarketRates(US=None, EU=None, UK=None, CN=None, source="not_available_in_sample", verified_on=None),
+        us_tariff_data=USITCTariffData(status=USITCTariffStatus.NOT_ASSESSED),
         fta_origin=_fta_assessment(payload.fta_assessment),
         search_metadata=SearchMetadata(detected_language=language, search_terms=terms, candidate_count=0, source=source),
     )
@@ -167,6 +192,13 @@ def query_hs_code(code: str):
         return GRAPH.classification_context(code)
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/us-tariff/{code}", response_model=USITCTariffData)
+def query_us_tariff(code: str):
+    if len(code) != 6 or not code.isdigit():
+        raise HTTPException(status_code=422, detail="HS code must contain exactly 6 digits")
+    return _us_tariff_data(code)
 
 
 @app.post("/api/classify", response_model=ClassificationResponse)
@@ -256,7 +288,9 @@ def classify_product(payload: ProductClassificationRequest):
     values["product_analysis"]["primary_function"] = payload.primary_function or "Not provided"
     values["product_analysis"]["form_and_packaging"] = payload.form_and_packaging
     values["final_classification"]["national_tariff_code"] = None
-    values["mfn_rates"] = _rates_for(result.hs_code_6).model_dump()
+    us_tariff_data = _us_tariff_data(result.hs_code_6)
+    values["us_tariff_data"] = us_tariff_data.model_dump()
+    values["mfn_rates"] = _rates_for(result.hs_code_6, us_tariff_data).model_dump()
     values["tariff_engineering_advice"] = (
         _tariff_advice(payload.tariff_engineering).model_dump()
         if payload.tariff_engineering
@@ -305,10 +339,12 @@ def preview_product(payload: PreviewRequest):
             {
                 "code": row["hs6_code"],
                 "description": row["description"],
-                "rates": mfn_rates(row["hs6_code"]),
+                "rates": _rates_for(row["hs6_code"], us_tariff_data).model_dump(),
+                "us_tariff_data": us_tariff_data.model_dump(),
                 "verified": row["last_verified"],
             }
             for row in candidates
+            for us_tariff_data in [_us_tariff_data(row["hs6_code"])]
         ],
         "notice": "Bu yalnızca 375 kodluk örnek tarifede İngilizce metin eşleşmesidir; resmi GTİP sınıflandırması değildir.",
     }
