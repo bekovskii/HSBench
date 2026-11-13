@@ -106,6 +106,7 @@ If you use the resources in this repository, please cite the paper:
 }
 ```
 
-## MVP validation page
 
-The local Next.js and FastAPI prototype is documented in [MVP_VALIDATION.md](MVP_VALIDATION.md). It includes an HS6 in-memory lookup and a mock product URL preview.
+## TarifeLab MVP and GRI contract
+
+The integrated FastAPI and Next.js validation app, GRI prompt, generated Pydantic JSON Schema, optional FAISS search setup, FTA origin evaluator, and assembled/unassembled tariff audit are documented in [TARIFELAB_README.md](TARIFELAB_README.md) and [MVP_VALIDATION.md](MVP_VALIDATION.md). The canonical prompt is [`gri_system_prompt.md`](gri_system_prompt.md); the response schema is [`schemas/classification_response.schema.json`](schemas/classification_response.schema.json).
