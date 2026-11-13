@@ -78,6 +78,7 @@ def _not_assessed_tariff_advice() -> TariffEngineeringAdvice:
 def _not_assessed_fta() -> FTAAssessment:
     return FTAAssessment(
         status="not_assessed",
+        rule_source_verified=False,
         explanation="No agreement-specific rule and origin evidence were supplied.",
     )
 
@@ -109,6 +110,7 @@ def _fta_assessment(request: FTAAssessmentRequest | None) -> FTAAssessment:
         agreement=result.agreement,
         status=result.status,
         rule_source=result.rule_source,
+        rule_source_verified=result.rule_source_verified,
         rule_effective_date=result.rule_effective_date.isoformat(),
         rule_summary=result.rule_summary,
         explanation=result.explanation + " " + "; ".join(item.explanation for item in result.criteria_results),
@@ -235,6 +237,7 @@ def classify_product(payload: ProductClassificationRequest):
             agreement=payload.fta_assessment.agreement,
             status="insufficient_data",
             rule_source=payload.fta_assessment.rule_source,
+            rule_source_verified=payload.fta_assessment.rule_source_verified,
             rule_effective_date=payload.fta_assessment.rule_effective_date.isoformat(),
             rule_summary=payload.fta_assessment.rule_summary,
             explanation="FTA request HS6 does not match the selected classification; origin result was not attached.",
