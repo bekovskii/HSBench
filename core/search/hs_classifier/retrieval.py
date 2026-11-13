@@ -56,6 +56,11 @@ def search(
     top_k: int,
 ) -> pl.DataFrame:
     """Embed a single query string and return the top_k nearest HS codes."""
+    encoder_name = getattr(
+        getattr(getattr(model[0], "auto_model", None), "config", None), "_name_or_path", ""
+    )
+    if "multilingual-e5" in encoder_name:
+        query = f"query: {query}"
     query_embedding = normalized_embeddings([query], model).astype("float32")
     top_k = min(int(top_k), len(codes))
     if top_k <= 0:
@@ -64,7 +69,8 @@ def search(
     _, indices = index.search(query_embedding, top_k)
     # look up by code rather than position so data ordering doesn't matter
     matched_codes = [codes[i] for i in indices[0] if i >= 0]
-    return data.filter(pl.col("code").is_in(matched_codes))
+    ranks = pl.DataFrame({"code": matched_codes, "_rank": range(len(matched_codes))})
+    return ranks.join(data, on="code", how="left").sort("_rank").drop("_rank")
 
 
 def multi_search(
@@ -89,5 +95,4 @@ def multi_search(
             results.append(search(data, codes, index, model, term, max(top_k_each, 1)))
 
     concatenated = pl.concat(results)
-    return concatenated.unique(subset=["code"])
-
+    return concatenated.unique(subset=["code"], maintain_order=True)

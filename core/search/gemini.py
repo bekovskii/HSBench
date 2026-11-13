@@ -59,6 +59,12 @@ class GriModelResponse(BaseModel):
     excluded_paths_reason: list[ExcludedPathReason]
 
 
+class _TranslatedTermsResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    terms: list[str]
+
+
 def _read_json_response(request: Request, response_model: type[BaseModel]):
     try:
         with urlopen(request, timeout=180) as response:
@@ -188,6 +194,38 @@ def generate_search_terms(product_facts: dict) -> SearchTermsResponse:
         {"product_facts": product_facts},
         SearchTermsResponse,
     )
+
+
+def translate_search_terms_to_chinese(terms: list[str]) -> list[str]:
+    """Translate retrieval phrases locally so English products match the Chinese HS graph."""
+    prompt = (
+        "Translate each product search phrase into concise Simplified Chinese. Preserve order. "
+        "Do not add facts, explanations, or HS codes. Return only the JSON terms array."
+    )
+    payload = {"terms": terms[:8]}
+    if os.environ.get("LLM_PROVIDER", "ollama").strip().lower() != "ollama":
+        return _generate_json(prompt, payload, _TranslatedTermsResponse).terms[:8]
+
+    model = os.environ.get("OLLAMA_MODEL", "qwen3:4b-instruct-2507-q4_K_M").strip()
+    base_url = os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434").rstrip("/")
+    request_body = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+        ],
+        "format": _TranslatedTermsResponse.model_json_schema(),
+        "think": False,
+        "stream": False,
+        "options": {"temperature": 0, "num_ctx": 4096, "num_predict": 256},
+    }
+    request = Request(
+        f"{base_url}/api/chat",
+        data=json.dumps(request_body, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    return _read_json_response(request, _TranslatedTermsResponse).terms[:8]
 
 
 def classify_with_gri(payload: dict) -> GriModelResponse | ClassificationResponse:

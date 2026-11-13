@@ -35,7 +35,7 @@ npm install
 npm run dev
 ```
 
-FAISS indeksini ve Harvard sınıflandırıcısını kullanmak için `.venv\Scripts\python -m pip install -e ".[search]"`, Atlas bağlantı değişkenleri ve `data/intermediate/hs12_4_index.parquet` gerekir. Bunlar yoksa arama 375 kodluk örnek tarife tablosuna düşer; örnek veri resmi sınıflandırma kaynağı değildir.
+Çok dilli FAISS/S-BERT araması için `.venv\Scripts\python -m pip install -e ".[search]"` ardından `.venv\Scripts\python core\search\hs_classifier\build_hsbench_index.py` çalıştırın. Bu, HSBench grafındaki 5.615 HS6 düğümünü `data/intermediate/hsbench_hs6_index.parquet` içine indeksler; `intfloat/multilingual-e5-small` modelini ilk seferinde Hugging Face'ten indirir. Harvard'ın Atlas DB'si gerekmez. Model İngilizce arama metnini, yalnız Çince adları bulunan grafla eşleştirir. Sınıflandırma ürünü için bu indeks yalnız aday bulur; resmi tarife metninin ve uzman doğrulamasının yerini tutmaz. İndeks veya model bağımlılıkları bulunmazsa arama açıkça 375 kodluk örnek tabloya düşer.
 
 ## Veri kapsamı ve sınırlar
 

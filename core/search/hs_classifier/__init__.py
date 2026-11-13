@@ -25,19 +25,6 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="translators")
 
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-from sentence_transformers import SentenceTransformer
-
-from .build_query import build_query
-from .init_lookup_index import build_index, save_hs_chapters
-from .reranker import rerank_codes
-from .retrieval import load_index, multi_search
-from .search_terms import generate_search_terms, load_hs_chapters
-from .translator import detect_language, translate_eng
-
 logger = logging.getLogger(__name__)
 
 
@@ -52,6 +39,12 @@ def _require_env(name: str) -> str:
 
 
 def _runtime_config() -> dict[str, str | int | float]:
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
     return {
         "embedding_model": _require_env("EMBEDDING_MODEL"),
         "search_term_model": _require_env("SEARCH_TERM_MODEL"),
@@ -100,6 +93,8 @@ def init_index(
 
     Must be run once before init_classifier().
     """
+    from .init_lookup_index import build_index, save_hs_chapters
+
     embedding_model = _require_env("EMBEDDING_MODEL")
     index_path, chapters_path = _intermediate_paths(intermediate_data_dir)
     save_hs_chapters(output_path=chapters_path, force=force)
@@ -116,6 +111,11 @@ def init_classifier(
     intermediate_data_dir: str | Path | None = None,
 ) -> dict:
     """Load all heavy resources once. Pass the result to classify_row()."""
+    from sentence_transformers import SentenceTransformer
+
+    from .retrieval import load_index
+    from .search_terms import load_hs_chapters
+
     config = _runtime_config()
     index_path, chapters_path = _intermediate_paths(intermediate_data_dir)
     logger.info("Loading HS chapters and FAISS index...")
@@ -162,6 +162,12 @@ def classify_row(
         ClassificationResult with top N codes, descriptions, reasoning,
         search terms, and detected language.
     """
+    from .build_query import build_query
+    from .reranker import rerank_codes
+    from .retrieval import multi_search
+    from .search_terms import generate_search_terms
+    from .translator import detect_language, translate_eng
+
     config = _runtime_config()
     # resolve defaults from .env
     _search_term_model = search_term_model or config["search_term_model"]
@@ -218,4 +224,3 @@ def classify_row(
         search_terms=terms,
         detected_language=detected_lang,
     )
-

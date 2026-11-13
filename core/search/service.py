@@ -6,24 +6,28 @@ from pathlib import Path
 
 from core.duty_lookup import search as sample_search
 from core.search.language import detect_language
+from core.search.gemini import GeminiUnavailable, translate_search_terms_to_chinese
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 @lru_cache(maxsize=1)
 def _load_faiss_resources():
-    index_path = Path(os.environ.get("HS_INDEX_PATH", ROOT / "data" / "intermediate" / "hs12_4_index.parquet"))
+    index_path = Path(os.environ.get("HS_INDEX_PATH", ROOT / "data" / "intermediate" / "hsbench_hs6_index.parquet"))
     if not index_path.is_file():
         return None
-    from sentence_transformers import SentenceTransformer
+    try:
+        from sentence_transformers import SentenceTransformer
 
-    from core.search.hs_classifier.retrieval import load_index
+        from core.search.hs_classifier.retrieval import load_index
 
-    frame, codes, index = load_index(index_path)
-    model_name = os.environ.get("EMBEDDING_MODEL")
-    if not model_name:
-        raise RuntimeError("EMBEDDING_MODEL is required when HS_INDEX_PATH points to an index")
-    model = SentenceTransformer(model_name, local_files_only=True)
+        frame, codes, index = load_index(index_path)
+        model_name = os.environ.get(
+            "EMBEDDING_MODEL", "intfloat/multilingual-e5-small"
+        )
+        model = SentenceTransformer(model_name, local_files_only=True)
+    except (ImportError, OSError):
+        return None
     return frame, codes, index, model
 
 
@@ -35,15 +39,24 @@ def search_candidates(query: str, terms: list[str], limit: int = 5) -> tuple[lis
         from core.search.hs_classifier.retrieval import multi_search
 
         frame, codes, index, model = resources
+        search_query = query
+        search_terms = terms
+        if language not in {"zh", "unknown"}:
+            try:
+                translated = translate_search_terms_to_chinese([query, *terms])
+                if translated:
+                    search_query, search_terms = translated[0], translated[1:]
+            except GeminiUnavailable:
+                pass
         result = multi_search(
             data=frame,
             codes=codes,
             index=index,
             model=model,
-            query=query,
-            terms=terms,
+            query=search_query,
+            terms=search_terms,
             top_k_total=max(limit * 5, 25),
-            top_k_bert=limit,
+            top_k_bert=limit if not search_terms else max(1, limit // 2),
         ).head(limit)
         return result.to_dicts(), language, "harvard_hscode_mapping_faiss"
 
@@ -52,4 +65,3 @@ def search_candidates(query: str, terms: list[str], limit: int = 5) -> tuple[lis
         for row in sample_search(text, limit=limit):
             results.setdefault(row["hs6_code"], row)
     return list(results.values())[:limit], language, "bundled_tariff_sample_keyword_search"
-
